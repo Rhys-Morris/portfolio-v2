@@ -64,8 +64,10 @@ const Nav = () => {
             </Link>
           </li>
           <li style={listItemStyle}>Blog</li>
-          <li onClick={toggleColorMode} style={{ cursor: "pointer" }}>
+          <li>
             <FontAwesomeIcon
+              onClick={toggleColorMode}
+              style={{ cursor: "pointer" }}
               icon={colorMode === "light" ? faMoon : faSun}
               size="2x"
             />
