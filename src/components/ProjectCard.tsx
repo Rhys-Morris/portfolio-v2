@@ -11,6 +11,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
+import APP_COLORS from "../style/colorTheme";
 
 const ProjectCard = ({ project }) => {
   const { colorMode } = useColorMode();
@@ -28,9 +29,10 @@ const ProjectCard = ({ project }) => {
       <Box
         h="180px"
         w="100%"
-        borderRadius="10px"
+        borderTopLeftRadius="10px"
+        borderTopRightRadius="10px"
         marginBottom="10px"
-        bgImage={imageUrl}
+        bgImage={`linear-gradient(to bottom right, rgba(0, 0, 0, 0.2), rgba(8, 32, 50, .1)), url('${imageUrl}')`}
         bgPosition="top"
         bgSize="cover"
       ></Box>

@@ -7,6 +7,7 @@ import {
   faChevronUp,
 } from "@fortawesome/free-solid-svg-icons";
 import ProjectCard from "./ProjectCard";
+import Technology from "./Technology";
 
 const projectData = [
   {
@@ -95,14 +96,20 @@ const Work = () => {
   return (
     <section>
       <Flex direction="column" justify="center" align="center">
-        <Flex zIndex="0" marginBottom="50px">
+        <Flex zIndex="0" marginBottom="50px" align="center">
           <FontAwesomeIcon
             icon={faBriefcase}
             size="2x"
             style={{ marginRight: "10px" }}
           />
-          <Heading>Work</Heading>
+          <Heading as="h2" size="2xl">
+            Work
+          </Heading>
         </Flex>
+        <Technology />
+        <Heading as="h3" size="lg" mb="20px" zIndex="0" marginTop="50px">
+          Projects
+        </Heading>
         <Flex
           justify="space-around"
           align="start"
