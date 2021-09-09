@@ -28,7 +28,7 @@ const Contact = () => {
       }}
     >
       <Center>
-        <Flex direction="column" maxWidth="700px" width="90vw" zIndex="2">
+        <Flex direction="column" maxWidth="700px" width="80vw" zIndex="2">
           <Heading alignSelf="center" mb="20px">
             Get in touch!
           </Heading>
@@ -37,7 +37,7 @@ const Contact = () => {
               <FormLabel size="sm">Name</FormLabel>
               <Input
                 variant="flushed"
-                borderColor={APP_COLORS.tertiaryDark}
+                borderColor={APP_COLORS.fontHighlight}
                 placeholder="Rhys Morris"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
@@ -48,7 +48,7 @@ const Contact = () => {
               <FormLabel size="sm">Email</FormLabel>
               <Input
                 variant="flushed"
-                borderColor={APP_COLORS.tertiaryDark}
+                borderColor={APP_COLORS.fontHighlight}
                 placeholder="Rhys@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -60,7 +60,7 @@ const Contact = () => {
               <FormLabel size="sm">Message</FormLabel>
               <Input
                 variant="flushed"
-                borderColor={APP_COLORS.tertiaryDark}
+                borderColor={APP_COLORS.fontHighlight}
                 height="100px"
                 type="textarea"
                 placeholder="Type your message here"
@@ -70,7 +70,13 @@ const Contact = () => {
                 mb="10px"
               />
             </FormControl>
-            <Button>Submit</Button>
+            <Button
+              width="100%"
+              colorScheme={colorMode === "light" ? "gray" : "blue"}
+              bg={colorMode === "dark" ? APP_COLORS.fontHighlight : null}
+            >
+              Submit
+            </Button>
           </form>
         </Flex>
       </Center>

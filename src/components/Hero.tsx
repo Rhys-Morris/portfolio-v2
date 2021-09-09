@@ -31,31 +31,24 @@ const Hero = () => {
   const bgStyle = {
     background:
       colorMode === "light"
-        ? `radial-gradient(ellipse at center, ${APP_COLORS.tertiaryLight} 0%, ${APP_COLORS.primaryLight} 50%)`
-        : `radial-gradient(ellipse at center, ${APP_COLORS.tertiaryDark} 0%, ${APP_COLORS.primaryDark} 70%)`,
+        ? `radial-gradient(ellipse at center, ${APP_COLORS.tertiaryLight} 0%, ${APP_COLORS.primaryLight} 80%)`
+        : `radial-gradient(ellipse at center, ${APP_COLORS.tertiaryDark} 0%, ${APP_COLORS.primaryDark} 80%)`,
     display: "block",
     inset: 0,
     width: "100%",
     position: "fixed",
   };
 
-  const debounce = (func, wait) => {
-    let timeout;
-    return () => {
-      if (timeout) {
-        clearTimeout(timeout);
-      }
-      timeout = setTimeout(func, wait);
-    };
-  };
-
-  const onScroll = debounce(() => {
-    console.log("scroll");
-    if (window.scrollY > window.innerHeight / 2 && !dimCanvas)
+  const onScroll = () => {
+    if (window.scrollY > window.innerHeight / 2) {
+      console.log("dimTransition");
       setDimCanvas(true);
-    if (window.scrollY <= window.innerHeight / 2 && dimCanvas)
+    }
+    if (window.scrollY <= window.innerHeight / 2) {
+      console.log("undimTransition");
       setDimCanvas(false);
-  }, 200);
+    }
+  };
 
   React.useEffect(() => {
     window.addEventListener("scroll", onScroll);
@@ -96,24 +89,24 @@ const Hero = () => {
           </Heading>
           <Flex align="center" zIndex="2" width="100%">
             <Divider bg={APP_COLORS.fontHighlight} h="2px" mr="10px" />
-            <Link
+            <a
               href="https://au.linkedin.com/in/rhys-morris-37ba241b9"
-              isExternal
+              target="_blank"
             >
               <FontAwesomeIcon
                 icon={faLinkedin}
                 size="2x"
                 style={{ margin: "0 5px" }}
               />
-            </Link>
-            <Link href="https://twitter.com/rhysmorris91" isExternal>
+            </a>
+            <a href="https://twitter.com/rhysmorris91" target="_blank">
               <FontAwesomeIcon
                 icon={faTwitterSquare}
                 size="2x"
                 style={{ margin: "0 5px" }}
               />
-            </Link>
-            <Link href="https://github.com/Rhys-Morris" isExternal>
+            </a>
+            <a href="https://github.com/Rhys-Morris" target="_blank">
               <FontAwesomeIcon
                 icon={faGithubSquare}
                 size="2x"
@@ -121,7 +114,7 @@ const Hero = () => {
                   margin: "0 5px",
                 }}
               />
-            </Link>
+            </a>
             <Divider bg={APP_COLORS.fontHighlight} h="2px" ml="10px" />
           </Flex>
         </Flex>

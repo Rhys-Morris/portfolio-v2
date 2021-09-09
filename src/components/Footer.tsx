@@ -2,10 +2,19 @@ import React from "react";
 import { Flex, Text } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import "@fontsource/iosevka";
 
 const Footer = () => {
   return (
-    <footer style={{ zIndex: 0, width: "100%", fontSize: "12px" }}>
+    <footer
+      style={{
+        zIndex: 0,
+        width: "100%",
+        fontSize: "12px",
+        fontFamily: "iosevka",
+        fontWeight: "bold",
+      }}
+    >
       <Flex direction="column" justify="center" align="center" zIndex="inherit">
         <Text zIndex="inherit">&copy; 2021 Rhys Morris</Text>
         <Flex zIndex="inherit">
