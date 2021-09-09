@@ -8,12 +8,9 @@ const config: ThemeConfig = {
 
 const theme = extendTheme({
   config,
-  styles: {
-    global: (props) => ({
-      "html, body": {
-        bg: mode("white", "#171923")(props),
-      },
-    }),
+  fonts: {
+    heading: "Raleway",
+    body: "Cabin",
   },
 });
 

@@ -1,8 +1,13 @@
 {
   "dependencies": {
     "@chakra-ui/react": "^1.6.7",
+    "@devil7softwares/react-drifter-stars": "^1.0.3",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
+    "@fontsource/cabin": "^4.5.0",
+    "@fontsource/iosevka": "^4.5.1",
+    "@fontsource/open-sans": "^4.5.0",
+    "@fontsource/raleway": "^4.5.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/react-fontawesome": "^0.1.15",

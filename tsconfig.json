@@ -22,7 +22,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "src/pages/_app.tsz", "src/pages/_app.js", "src/components/styled/moon.jsx", "src/components/Hero.jsx", "src/components/Hero.jsx"  ],
+, "src/pages/_app.tsz", "src/pages/_app.js", "src/components/styled/moon.jsx", "src/components/Hero.jsx", "src/components/Hero.jsx", "src/components/styled/Hero.jsx"  ],
   "exclude": [
     "node_modules"
   ]
