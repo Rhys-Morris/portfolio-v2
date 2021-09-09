@@ -94,7 +94,7 @@ const projectData = [
 const Work = () => {
   const [projectCount, setProjectCount] = React.useState(4);
   return (
-    <section>
+    <section style={{ marginBottom: "100px" }}>
       <Flex direction="column" justify="center" align="center">
         <Flex zIndex="0" marginBottom="50px" align="center">
           <FontAwesomeIcon

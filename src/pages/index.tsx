@@ -2,6 +2,7 @@ import React from "react";
 import { useColorMode } from "@chakra-ui/react";
 import Hero from "../components/Hero";
 import Work from "../components/Work";
+import About from "../components/About";
 import Footer from "../components/Footer";
 import APP_COLORS from "../style/colorTheme";
 import Contact from "../components/Contact";
@@ -18,6 +19,7 @@ const Home = () => {
       }}
     >
       <Hero />
+      <About />
       <Work />
       <Contact />
       <Footer />
