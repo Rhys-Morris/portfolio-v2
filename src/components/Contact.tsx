@@ -28,7 +28,7 @@ const Contact = () => {
       }}
     >
       <Center>
-        <Flex direction="column" maxWidth="700px" width="80vw" zIndex="2">
+        <Flex direction="column" maxWidth="750px" width="80vw" zIndex="2">
           <Heading alignSelf="center" mb="20px">
             Get in touch!
           </Heading>

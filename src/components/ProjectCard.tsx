@@ -17,15 +17,23 @@ const ProjectCard = ({ project }) => {
   const { title, description, imageUrl, technologies, resourceUrls } = project;
   const [githubLink, liveLink] = resourceUrls;
   return (
-    <Flex direction="column" width="45%" zIndex="0" borderRadius="5px" p="10px">
-      <Image
-        alt="project-img"
-        src={imageUrl}
+    <Flex
+      direction="column"
+      width="45%"
+      zIndex="0"
+      borderRadius="5px"
+      p="10px"
+      margin="20px 0"
+    >
+      <Box
         h="180px"
         w="100%"
         borderRadius="10px"
         marginBottom="10px"
-      />
+        bgImage={imageUrl}
+        bgPosition="top"
+        bgSize="cover"
+      ></Box>
       <Flex justify="space-between" align="center">
         <Heading as="h3" size="lg">
           {title}
@@ -34,15 +42,17 @@ const ProjectCard = ({ project }) => {
           <a href={githubLink} target="_blank">
             <FontAwesomeIcon icon={faGithub} style={{ marginRight: "5px" }} />
           </a>
-          <a href={liveLink} target="_blank">
-            <FontAwesomeIcon icon={faExternalLinkAlt} />
-          </a>
+          {liveLink && (
+            <a href={liveLink} target="_blank">
+              <FontAwesomeIcon icon={faExternalLinkAlt} />
+            </a>
+          )}
         </Box>
       </Flex>
-      <Flex>
+      <Flex flexWrap="wrap">
         {technologies.map((tech) => (
           <Badge
-            mr="5px"
+            m="3px"
             p="4px 8px"
             color={colorMode === "light" ? "black" : "white"}
           >
