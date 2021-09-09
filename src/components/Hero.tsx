@@ -12,6 +12,7 @@ const sectionStyle = {
 
 const Hero = () => {
   const { colorMode } = useColorMode();
+  const [dimCanvas, setDimCanvas] = React.useState(false);
 
   const bgStyle = {
     background:
@@ -21,17 +22,44 @@ const Hero = () => {
     display: "block",
     inset: 0,
     width: "100%",
-    position: "absolute",
+    position: "fixed",
   };
+
+  const debounce = (func, wait) => {
+    let timeout;
+    return () => {
+      if (timeout) {
+        clearTimeout(timeout);
+      }
+      timeout = setTimeout(func, wait);
+    };
+  };
+
+  const onScroll = debounce(() => {
+    console.log("scroll");
+    if (window.scrollY > window.innerHeight / 2 && !dimCanvas)
+      setDimCanvas(true);
+    if (window.scrollY <= window.innerHeight / 2 && dimCanvas)
+      setDimCanvas(false);
+  }, 200);
+
+  React.useEffect(() => {
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onscroll);
+  }, []);
 
   return (
     <section style={sectionStyle}>
       <DrifterStars
         style={bgStyle}
         color={
-          colorMode === "light"
+          colorMode === "light" && !dimCanvas
             ? APP_COLORS.secondaryLight
-            : APP_COLORS.secondaryDark
+            : colorMode === "dark" && !dimCanvas
+            ? APP_COLORS.secondaryDark
+            : colorMode === "light" && dimCanvas
+            ? APP_COLORS.dimCanvasLight
+            : APP_COLORS.dimCanvasDark
         }
         motion={{ ratio: 0.03 }}
       />
