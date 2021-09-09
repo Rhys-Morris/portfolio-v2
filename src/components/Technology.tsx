@@ -25,6 +25,10 @@ import {
   SiNetlify,
   SiHeroku,
 } from "react-icons/si";
+import { motion } from "framer-motion";
+
+const MotionFlex = motion(Flex);
+
 const Technology = () => {
   const [active, setActive] = React.useState("front");
   const { colorMode } = useColorMode();
@@ -85,7 +89,12 @@ const Technology = () => {
         </Button>
       </Flex>
       {active === "front" && (
-        <Flex marginTop="40px">
+        <MotionFlex
+          marginTop="40px"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
           <Flex direction="column" m="0 10px" align="center">
             <DiJsBadge size="40px" />
             <Text>JavaScript</Text>
@@ -110,11 +119,15 @@ const Technology = () => {
             <SiNextDotJs size="40px" />
             <Text>Next.JS</Text>
           </Flex>
-          -
-        </Flex>
+        </MotionFlex>
       )}
       {active === "back" && (
-        <Flex marginTop="40px">
+        <MotionFlex
+          marginTop="40px"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
           <Flex direction="column" m="0 10px" align="center">
             <DiRuby size="40px" />
             <Text>Ruby</Text>
@@ -127,10 +140,15 @@ const Technology = () => {
             <DiPostgresql size="40px" />
             <Text>PostgreSQL</Text>
           </Flex>
-        </Flex>
+        </MotionFlex>
       )}
       {active === "tools" && (
-        <Flex marginTop="40px">
+        <MotionFlex
+          marginTop="40px"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
           <Flex direction="column" m="0 10px" align="center">
             <DiNpm size="40px" />
             <Text>NPM</Text>
@@ -151,7 +169,7 @@ const Technology = () => {
             <SiHeroku size="40px" />
             <Text>Heroku</Text>
           </Flex>
-        </Flex>
+        </MotionFlex>
       )}
     </Flex>
   );

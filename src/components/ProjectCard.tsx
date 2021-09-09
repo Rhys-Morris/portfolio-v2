@@ -12,13 +12,20 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
 import APP_COLORS from "../style/colorTheme";
+import { motion, AnimatePresence } from "framer-motion";
 
-const ProjectCard = ({ project }) => {
+const MotionFlex = motion(Flex);
+
+const ProjectCard = ({ project, key }) => {
   const { colorMode } = useColorMode();
   const { title, description, imageUrl, technologies, resourceUrls } = project;
   const [githubLink, liveLink] = resourceUrls;
   return (
-    <Flex
+    <MotionFlex
+      initial={{ opacity: 0, scale: 0.5 }}
+      animate={{ opacity: 1, scale: 1.0 }}
+      transition={{ duration: 0.5 }}
+      exit={{ scale: 200 }}
       direction="column"
       width="45%"
       zIndex="0"
@@ -63,7 +70,7 @@ const ProjectCard = ({ project }) => {
         ))}
       </Flex>
       <Text>{description}</Text>
-    </Flex>
+    </MotionFlex>
   );
 };
 

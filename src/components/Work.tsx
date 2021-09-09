@@ -117,8 +117,8 @@ const Work = () => {
           width="80vw"
           flexWrap="wrap"
         >
-          {projectData.slice(0, projectCount).map((proj) => (
-            <ProjectCard project={proj} />
+          {projectData.slice(0, projectCount).map((proj, i) => (
+            <ProjectCard key={i} project={proj} />
           ))}
         </Flex>
         <Flex>
