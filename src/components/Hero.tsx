@@ -1,9 +1,23 @@
 import React from "react";
-import { Heading, Center, Flex, Button, useColorMode } from "@chakra-ui/react";
+import {
+  Heading,
+  Center,
+  Flex,
+  Link,
+  useColorMode,
+  Divider,
+} from "@chakra-ui/react";
 import DrifterStars from "@devil7softwares/react-drifter-stars";
 import APP_COLORS from "../style/colorTheme";
 import Nav from "./Nav";
 import "@fontsource/iosevka";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faLinkedin,
+  faGithubSquare,
+  faTwitterSquare,
+  faGithub,
+} from "@fortawesome/free-brands-svg-icons";
 
 const sectionStyle = {
   width: "99vw",
@@ -67,6 +81,7 @@ const Hero = () => {
       <Center height="100%">
         <Flex
           direction="column"
+          align="center"
           color={
             colorMode === "light"
               ? APP_COLORS.secondaryLight
@@ -76,9 +91,33 @@ const Hero = () => {
           <Heading zIndex="2" as="h1" size="4xl" mb="10px">
             Rhys Morris
           </Heading>
-          <Heading zIndex="2" as="h2" fontFamily="iosevka">
+          <Heading zIndex="2" as="h2" fontFamily="iosevka" marginBottom="20px">
             Software Developer
           </Heading>
+          <Flex align="center" zIndex="2" width="100%">
+            <Divider bg={APP_COLORS.fontHighlight} h="2px" mr="20px" />
+            <Link
+              href="https://au.linkedin.com/in/rhys-morris-37ba241b9"
+              isExternal
+            >
+              <FontAwesomeIcon
+                icon={faLinkedin}
+                size="2x"
+                style={{ marginRight: "10px" }}
+              />
+            </Link>
+            <Link href="https://twitter.com/rhysmorris91" isExternal>
+              <FontAwesomeIcon
+                icon={faTwitterSquare}
+                size="2x"
+                style={{ marginRight: "10px" }}
+              />
+            </Link>
+            <Link href="https://github.com/Rhys-Morris" isExternal>
+              <FontAwesomeIcon icon={faGithubSquare} size="2x" />
+            </Link>
+            <Divider bg={APP_COLORS.fontHighlight} h="2px" ml="20px" />
+          </Flex>
         </Flex>
       </Center>
     </section>
