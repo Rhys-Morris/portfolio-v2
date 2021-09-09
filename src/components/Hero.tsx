@@ -95,7 +95,7 @@ const Hero = () => {
             Software Developer
           </Heading>
           <Flex align="center" zIndex="2" width="100%">
-            <Divider bg={APP_COLORS.fontHighlight} h="2px" mr="20px" />
+            <Divider bg={APP_COLORS.fontHighlight} h="2px" mr="10px" />
             <Link
               href="https://au.linkedin.com/in/rhys-morris-37ba241b9"
               isExternal
@@ -103,20 +103,26 @@ const Hero = () => {
               <FontAwesomeIcon
                 icon={faLinkedin}
                 size="2x"
-                style={{ marginRight: "10px" }}
+                style={{ margin: "0 5px" }}
               />
             </Link>
             <Link href="https://twitter.com/rhysmorris91" isExternal>
               <FontAwesomeIcon
                 icon={faTwitterSquare}
                 size="2x"
-                style={{ marginRight: "10px" }}
+                style={{ margin: "0 5px" }}
               />
             </Link>
             <Link href="https://github.com/Rhys-Morris" isExternal>
-              <FontAwesomeIcon icon={faGithubSquare} size="2x" />
+              <FontAwesomeIcon
+                icon={faGithubSquare}
+                size="2x"
+                style={{
+                  margin: "0 5px",
+                }}
+              />
             </Link>
-            <Divider bg={APP_COLORS.fontHighlight} h="2px" ml="20px" />
+            <Divider bg={APP_COLORS.fontHighlight} h="2px" ml="10px" />
           </Flex>
         </Flex>
       </Center>

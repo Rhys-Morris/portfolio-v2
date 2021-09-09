@@ -7,7 +7,7 @@ import {
   FormLabel,
   Input,
   Center,
-  Text,
+  Button,
 } from "@chakra-ui/react";
 import APP_COLORS from "../style/colorTheme";
 
@@ -28,7 +28,7 @@ const Contact = () => {
       }}
     >
       <Center>
-        <Flex direction="column" width="700px">
+        <Flex direction="column" width="700px" zIndex="2">
           <Heading alignSelf="center" mb="20px">
             Get in touch!
           </Heading>
@@ -36,9 +36,8 @@ const Contact = () => {
             <FormControl mb="30px">
               <FormLabel size="sm">Name</FormLabel>
               <Input
+                variant="flushed"
                 borderColor={APP_COLORS.tertiaryDark}
-                borderWidth="2px"
-                borderRadius="3px"
                 placeholder="Rhys Morris"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
@@ -48,10 +47,9 @@ const Contact = () => {
             <FormControl mb="30px">
               <FormLabel size="sm">Email</FormLabel>
               <Input
-                borderWidth="2px"
+                variant="flushed"
                 borderColor={APP_COLORS.tertiaryDark}
-                borderRadius="3px"
-                placeholder="Let me know where I can reach you"
+                placeholder="Rhys@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 mb="10px"
@@ -61,10 +59,9 @@ const Contact = () => {
             <FormControl mb="30px">
               <FormLabel size="sm">Message</FormLabel>
               <Input
+                variant="flushed"
                 borderColor={APP_COLORS.tertiaryDark}
-                borderWidth="2px"
                 height="100px"
-                borderRadius="3px"
                 type="textarea"
                 placeholder="Type your message here"
                 value={message}
@@ -72,8 +69,8 @@ const Contact = () => {
                 fontSize="20px"
                 mb="10px"
               />
-              <Text size="sm">Let me know what I can do for you</Text>
             </FormControl>
+            <Button>Submit</Button>
           </form>
         </Flex>
       </Center>
