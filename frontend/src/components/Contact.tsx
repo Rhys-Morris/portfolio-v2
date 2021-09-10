@@ -23,6 +23,7 @@ const Contact = () => {
   const { colorMode } = useColorMode();
   return (
     <section
+      id="contact"
       style={{
         color:
           colorMode == "light"

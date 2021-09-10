@@ -8,7 +8,7 @@ import APP_COLORS from "../style/colorTheme";
 import Contact from "../components/Contact";
 
 const Home = () => {
-  const { colorMode } = useColorMode();
+  const { colorMode }: { colorMode: "light" | "dark" } = useColorMode();
 
   React.useEffect(() => {
     document.title = "Rhys Morris - Software Developer";
@@ -20,7 +20,7 @@ const Home = () => {
           colorMode === "light"
             ? APP_COLORS.primaryLight
             : APP_COLORS.primaryDark,
-        fontSize: "17px",
+        scrollBehavior: "smooth",
       }}
     >
       <Hero />
