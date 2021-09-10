@@ -27,6 +27,7 @@ const About = () => {
             borderRadius="100%"
             float="left"
             margin="10px 30px"
+            border={`5px solid ${APP_COLORS.primaryDark}`}
             style={{ shapeOutside: "circle(50%)" }}
           />
           <Text zIndex="0" textAlign="justify" pr="100px">
