@@ -10,17 +10,15 @@ import {
 import DrifterStars from "@devil7softwares/react-drifter-stars";
 import APP_COLORS from "../style/colorTheme";
 import Nav from "./Nav";
-import "@fontsource/iosevka";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLinkedin,
   faGithubSquare,
   faTwitterSquare,
-  faGithub,
 } from "@fortawesome/free-brands-svg-icons";
 
 const sectionStyle = {
-  width: "99vw",
+  width: "98vw", // TO FIX
   height: "100vh",
 };
 
@@ -41,11 +39,9 @@ const Hero = () => {
 
   const onScroll = () => {
     if (window.scrollY > window.innerHeight / 2) {
-      console.log("dimTransition");
       setDimCanvas(true);
     }
     if (window.scrollY <= window.innerHeight / 2) {
-      console.log("undimTransition");
       setDimCanvas(false);
     }
   };

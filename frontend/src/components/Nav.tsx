@@ -16,8 +16,10 @@ const Nav = () => {
   const {
     colorMode,
     toggleColorMode,
-  }: { colorMode: "light" | "dark"; toggleColorMode: () => void } =
-    useColorMode();
+  }: {
+    colorMode: "light" | "dark";
+    toggleColorMode: (color: "light" | "dark") => void;
+  } = useColorMode();
 
   return (
     <nav
