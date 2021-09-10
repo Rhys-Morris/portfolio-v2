@@ -55,12 +55,12 @@ const Nav = () => {
         <ul style={{ listStyle: "none", display: "flex" }}>
           <li style={listItemStyle}>
             <Link as={NextLink} href="/about">
-              About
+              Work
             </Link>
           </li>
           <li style={listItemStyle}>
             <Link color="red" as={NextLink} href="/work">
-              Work
+              Contact
             </Link>
           </li>
           <li style={listItemStyle}>Blog</li>

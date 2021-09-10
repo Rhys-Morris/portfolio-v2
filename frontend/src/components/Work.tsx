@@ -114,7 +114,7 @@ const Work = () => {
           justify="space-around"
           align="start"
           maxWidth="1000px"
-          width="80vw"
+          width="90vw"
           flexWrap="wrap"
         >
           {projectData.slice(0, projectCount).map((proj, i) => (

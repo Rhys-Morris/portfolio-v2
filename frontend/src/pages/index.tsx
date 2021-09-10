@@ -9,6 +9,10 @@ import Contact from "../components/Contact";
 
 const Home = () => {
   const { colorMode } = useColorMode();
+
+  React.useEffect(() => {
+    document.title = "Rhys Morris - Software Developer";
+  });
   return (
     <main
       style={{
@@ -16,6 +20,7 @@ const Home = () => {
           colorMode === "light"
             ? APP_COLORS.primaryLight
             : APP_COLORS.primaryDark,
+        fontSize: "17px",
       }}
     >
       <Hero />

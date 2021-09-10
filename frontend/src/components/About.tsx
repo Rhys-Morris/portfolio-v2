@@ -30,17 +30,15 @@ const About = () => {
             style={{ shapeOutside: "circle(50%)" }}
           />
           <Text zIndex="0" textAlign="justify" pr="100px">
-            G'day! I'm Rhys, a software developer based in Sunbury, a suburb
-            about 35km north-west of Melbourne, Victoria. I've recently started
-            my first position as a developer after completing an intensive
-            coding bootcamp through Coder Academy. I'm currently 30 years old
-            and discovered a passion for programming whilst still employed in my
-            initial career as a small animal veterinarian. I'm passionate about
-            creating interactive, functional and accessible products. I aim to
-            build applications and websites that provide a great user
-            experience, whilst still being performant. In my spare time I
-            restore mid century furniture - you can find my instagram with some
-            of my work{" "}
+            G'day! I'm Rhys, a software developer based in Melbourne, Australia.
+            I've recently started my first position as a developer after
+            completing an intensive coding bootcamp through Coder Academy. I
+            discovered a passion for programming whilst employed in my first
+            career as a small animal veterinarian. I'm passionate about creating
+            interactive, responsive and accessible products. I aim to build
+            applications and websites that provide a great user experience,
+            whilst still being performant. In my spare time I restore mid
+            century furniture - you can find my instagram with some of my work{" "}
             <a
               href="https://www.instagram.com/morrismodern/?hl=en"
               target="_blank"
