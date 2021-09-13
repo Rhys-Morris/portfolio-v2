@@ -1,10 +1,11 @@
 import React from "react";
-import { Flex, Heading, Button } from "@chakra-ui/react";
+import { Flex, Heading, Button, Text, Link } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBriefcase,
   faChevronDown,
   faChevronUp,
+  faPaperclip,
 } from "@fortawesome/free-solid-svg-icons";
 import ProjectCard from "./ProjectCard";
 import Technology from "./Technology";
@@ -77,6 +78,19 @@ const Work = () => {
             </Button>
           )}
         </Flex>
+        <Text zIndex="1" mt="30px" mb="20px">
+          Want to know more? You can download my resume below!
+        </Text>
+        <Link target="_blank" href="/resume">
+          <Button>
+            {" "}
+            <FontAwesomeIcon
+              icon={faPaperclip}
+              style={{ marginRight: "10px" }}
+            />{" "}
+            Resume
+          </Button>
+        </Link>
       </Flex>
     </section>
   );
