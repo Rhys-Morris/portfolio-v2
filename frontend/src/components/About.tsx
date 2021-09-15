@@ -1,12 +1,16 @@
 import React from "react";
-import { Flex, Heading, Image, Text, Link } from "@chakra-ui/react";
-import { motion } from "framer-motion";
-import APP_COLORS from "../style/colorTheme";
+import {
+  Flex,
+  Heading,
+  Image,
+  Text,
+  Link,
+  useMediaQuery,
+} from "@chakra-ui/react";
 import UnderlineText from "./styled/UnderlineText";
 
-const MotionImage = motion(Image);
-
 const About = () => {
+  const [breakpoint1000] = useMediaQuery("(max-width: 1000px)");
   return (
     <section style={{ display: "flex", marginBottom: "100px" }}>
       <Flex
@@ -20,17 +24,23 @@ const About = () => {
         <Heading as="h2" size="2xl" zIndex="0" mb="30px">
           About
         </Heading>
-        <div style={{ zIndex: "0" }}>
-          <MotionImage
+        <div style={{ zIndex: 0 }}>
+          <Image
             src="/photo.png"
             height="200px"
             zIndex="0"
             borderRadius="100%"
-            float="left"
-            margin="10px 30px"
+            float={breakpoint1000 ? "none" : "left"}
+            margin={breakpoint1000 ? "20px auto" : "10px 30px"}
             style={{ shapeOutside: "circle(50%)" }}
           />
-          <Text zIndex="0" textAlign="justify" pr="100px" fontSize="17px">
+          <Text
+            zIndex="0"
+            textAlign="justify"
+            pr={breakpoint1000 ? "0" : "100px"}
+            maxWidth={breakpoint1000 ? "500px" : null}
+            fontSize="17px"
+          >
             G'day! I'm Rhys, a software developer based in Melbourne, Australia.
             I've recently started my first position as a developer after
             completing an intensive coding bootcamp through Coder Academy. I
