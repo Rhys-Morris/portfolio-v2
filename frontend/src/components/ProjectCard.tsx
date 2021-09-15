@@ -2,17 +2,16 @@ import React from "react";
 import {
   Flex,
   Heading,
-  Image,
   Box,
   Text,
   Badge,
   useColorMode,
+  useMediaQuery,
 } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
-import APP_COLORS from "../style/colorTheme";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 const MotionFlex = motion(Flex);
 
@@ -20,13 +19,15 @@ const ProjectCard = ({ project }) => {
   const { colorMode } = useColorMode();
   const { title, description, imageUrl, technologies, resourceUrls } = project;
   const [githubLink, liveLink] = resourceUrls;
+  const [breakpoint850] = useMediaQuery("(max-width: 850px)");
   return (
     <MotionFlex
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
       direction="column"
-      width="45%"
+      maxWidth="500px"
+      width={breakpoint850 ? "100%" : "45%"}
       zIndex="0"
       borderRadius="5px"
       p="10px"
