@@ -46,8 +46,8 @@ const Contact = () => {
             </Heading>
           </Flex>
           <Text textAlign="center" mb="20px" fontSize="18px">
-            I'm currently open to work opportunities! Reach out and we can have
-            a chat.
+            I'm always open to work opportunities! Reach out and we can have a
+            chat.
           </Text>
           <form>
             <FormControl mb="30px">

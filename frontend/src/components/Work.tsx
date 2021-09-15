@@ -9,13 +9,14 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import ProjectCard from "./ProjectCard";
 import Technology from "./Technology";
-import { projectData } from "../data/projectData";
+import { projectData } from "../lib/projectData";
+import UnderlineText from "./styled/UnderlineText";
 
 const Work = () => {
   const [projectCount, setProjectCount] = React.useState(4);
 
   return (
-    <section style={{ margin: "100px", padding: "50px 0" }} id="work">
+    <section style={{ margin: "50px", padding: "100px 0" }} id="work">
       <Flex direction="column" justify="center" align="center">
         <Flex zIndex="0" marginBottom="50px" align="center">
           <FontAwesomeIcon
@@ -79,18 +80,15 @@ const Work = () => {
           )}
         </Flex>
         <Text zIndex="1" mt="30px" mb="20px">
-          Want to know more? You can download my resume below!
+          Want to know more? Download my{" "}
+          <Link
+            target="_blank"
+            href="/resume"
+            _hover={{ textDecoration: "none" }}
+          >
+            <UnderlineText>resume</UnderlineText>.
+          </Link>
         </Text>
-        <Link target="_blank" href="/resume">
-          <Button>
-            {" "}
-            <FontAwesomeIcon
-              icon={faPaperclip}
-              style={{ marginRight: "10px" }}
-            />{" "}
-            Resume
-          </Button>
-        </Link>
       </Flex>
     </section>
   );

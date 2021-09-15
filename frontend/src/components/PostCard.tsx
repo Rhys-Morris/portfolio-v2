@@ -1,72 +1,153 @@
 import React from "react";
-import { Flex, Text, Button, useColorMode } from "@chakra-ui/react";
+import { Flex, Text, Button, useColorMode, Link, Box } from "@chakra-ui/react";
 import APP_COLORS from "../style/colorTheme";
 import "@fontsource/iosevka";
-import { faGratipay } from "@fortawesome/free-brands-svg-icons";
+import NextLink from "next/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import UnderlineText from "./styled/UnderlineText";
 
-const PostCard = ({ post }) => {
-  const { colorMode }: { colorMode: "light" | "dark" } = useColorMode();
+export const PostCard1 = ({ post }) => {
+  const { colorMode }: { colorMode: colorMode } = useColorMode();
   const {
+    id,
     published_at: published,
     title,
-    content,
+    summary,
     readTime,
-  }: {
-    published_at: string;
-    title: string;
-    content: string;
-    readTime: {
-      minutes: number;
-      text: string;
-      time: number;
-      words: number;
-    };
-  } = post;
+  }: PostWithReadingTime = post;
 
   return (
     <Flex
       m="10px 0"
       align="center"
-      width="45%"
+      maxWidth="100%"
+      w="100%"
       p="15px"
-      borderRadius="5px"
-      border={`2px solid ${colorMode === "light" ? "#E2E8F0" : "#2D353B"}`}
-      boxShadow="2px 3px 1px 1px rgba(0, 0, 0, .08)"
+      zIndex="1"
     >
       <Flex direction="column">
-        <Text
-          fontSize="20px"
-          fontWeight="bold"
-          color={APP_COLORS.fontHighlight}
-          mb="5px"
-        >
-          {title}
-        </Text>
-        <Flex align="center" justify="space-between" width="100%" mb="5px">
-          <Text>
-            {new Date(published).toLocaleDateString("en-UK", {
-              month: "long",
-              day: "numeric",
-              year: "numeric",
-            })}
-          </Text>
-          <Text
-            color={
-              colorMode === "light"
-                ? APP_COLORS.dimCanvasLight
-                : APP_COLORS.dimCanvasDark
-            }
-          >
-            {readTime.text}
-          </Text>
+        <Flex direction="row">
+          <Flex align="start" direction="column" mr="30px">
+            <Text mb="5px">
+              {new Date(published).toLocaleDateString("en-UK", {
+                month: "long",
+                day: "numeric",
+                year: "numeric",
+              })}
+            </Text>
+            <Text
+              alignSelf="flex-end"
+              color={
+                colorMode === "light"
+                  ? APP_COLORS.dimCanvasLight
+                  : APP_COLORS.dimCanvasDark
+              }
+            >
+              {readTime.text}
+            </Text>
+          </Flex>
+          <Flex direction="column" width="50%" flex="1">
+            <Link as={NextLink} href={`/blog/${id}`}>
+              <Text
+                cursor="pointer"
+                fontSize="20px"
+                fontWeight="bold"
+                color={APP_COLORS.fontHighlight}
+                mb="5px"
+              >
+                {title}
+              </Text>
+            </Link>
+            <Text>{summary}</Text>
+            <Link as={NextLink} href={`/blog/${id}`}>
+              <Button alignSelf="start" mt="10px">
+                Read More{" "}
+                <FontAwesomeIcon
+                  icon={faArrowRight}
+                  style={{ marginLeft: "10px" }}
+                />
+              </Button>
+            </Link>
+          </Flex>
         </Flex>
-        <Text mb="20px">
-          {content.slice(0, 250) + (content.length > 250 ? "..." : null)}
-        </Text>
-        <Button>Read More</Button>
       </Flex>
     </Flex>
   );
 };
 
-export default PostCard;
+export const PostCard2 = ({ post }) => {
+  const { colorMode }: { colorMode: colorMode } = useColorMode();
+  const {
+    id,
+    published_at: published,
+    title,
+    summary,
+    readTime,
+  }: PostWithReadingTime = post;
+
+  return (
+    <Flex
+      m="10px 0"
+      align="center"
+      maxWidth="550px"
+      width="45%"
+      p="15px"
+      zIndex="1"
+    >
+      <Flex direction="column" w="100%" align="start">
+        <Flex align="start" direction="column" mr="30px" w="100%">
+          <Flex direction="row" justify="space-between" w="100%">
+            <Link as={NextLink} href={`/blog/${id}`}>
+              <Text
+                cursor="pointer"
+                fontSize="24px"
+                fontWeight="bold"
+                color={APP_COLORS.fontHighlight}
+                mb="5px"
+              >
+                {title}
+              </Text>
+            </Link>
+            <Flex direction="column" mb="10px">
+              <Text mb="5px">
+                {new Date(published).toLocaleDateString("en-UK", {
+                  month: "long",
+                  day: "numeric",
+                  year: "numeric",
+                })}
+              </Text>
+              <Text
+                alignSelf="flex-end"
+                color={
+                  colorMode === "light"
+                    ? APP_COLORS.dimCanvasLight
+                    : APP_COLORS.dimCanvasDark
+                }
+              >
+                {readTime.text}
+              </Text>
+            </Flex>
+          </Flex>
+        </Flex>
+        <Text mb="10px">{summary}</Text>
+        <Link as={NextLink} href={`/blog/${id}`}>
+          <UnderlineText
+            color={
+              colorMode === "light"
+                ? APP_COLORS.secondaryLight
+                : APP_COLORS.secondaryDark
+            }
+            style={{ cursor: "pointer" }}
+          >
+            Read more
+            <FontAwesomeIcon
+              icon={faArrowRight}
+              style={{ marginLeft: "10px" }}
+            />
+          </UnderlineText>
+        </Link>
+      </Flex>
+    </Flex>
+  );
+};

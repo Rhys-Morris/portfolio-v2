@@ -3,6 +3,7 @@ import { Flex, Text } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import "@fontsource/iosevka";
+import APP_COLORS from "../style/colorTheme";
 
 const Footer = () => {
   return (
@@ -16,10 +17,16 @@ const Footer = () => {
       }}
     >
       <Flex direction="column" justify="center" align="center" zIndex="inherit">
-        <Text zIndex="inherit">&copy; 2021 Rhys Morris</Text>
+        <Text mb="3px" zIndex="inherit">
+          &copy; 2021 Rhys Morris
+        </Text>
         <Flex zIndex="inherit">
           <span>Made with</span>
-          <FontAwesomeIcon icon={faHeart} style={{ margin: "0 3px" }} />
+          <FontAwesomeIcon
+            icon={faHeart}
+            color={APP_COLORS.fontHighlight}
+            style={{ margin: "0 3px" }}
+          />
           <span>in Melbourne, Australia</span>
         </Flex>
       </Flex>

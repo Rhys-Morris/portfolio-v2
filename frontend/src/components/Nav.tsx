@@ -24,11 +24,11 @@ const Nav = () => {
   return (
     <nav
       style={{
-        position: "absolute",
+        position: "fixed",
         top: "0",
         left: "0",
         width: "100%",
-        padding: "30px 50px",
+        zIndex: 3,
       }}
     >
       <Flex
@@ -38,6 +38,14 @@ const Nav = () => {
           colorMode === "light"
             ? APP_COLORS.secondaryLight
             : APP_COLORS.secondaryDark
+        }
+        p="0 40px"
+        pt="20px"
+        pb="5px"
+        bg={
+          colorMode === "light"
+            ? "rgba(255, 255, 255, .9)"
+            : "rgba(0, 0, 0, .9)"
         }
       >
         <Link as={NextLink} href="/">

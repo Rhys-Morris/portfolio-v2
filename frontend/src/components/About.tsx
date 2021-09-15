@@ -1,8 +1,8 @@
 import React from "react";
-import { Flex, Heading, Image, Text } from "@chakra-ui/react";
+import { Flex, Heading, Image, Text, Link } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import APP_COLORS from "../style/colorTheme";
-import UnderlineLink from "./styled/UnderlineLink";
+import UnderlineText from "./styled/UnderlineText";
 
 const MotionImage = motion(Image);
 
@@ -30,7 +30,7 @@ const About = () => {
             margin="10px 30px"
             style={{ shapeOutside: "circle(50%)" }}
           />
-          <Text zIndex="0" textAlign="justify" pr="100px">
+          <Text zIndex="0" textAlign="justify" pr="100px" fontSize="17px">
             G'day! I'm Rhys, a software developer based in Melbourne, Australia.
             I've recently started my first position as a developer after
             completing an intensive coding bootcamp through Coder Academy. I
@@ -40,12 +40,13 @@ const About = () => {
             applications and websites that provide a great user experience,
             whilst still being performant. In my spare time I restore mid
             century furniture - you can find my instagram with some of my work{" "}
-            <UnderlineLink
+            <Link
               href="https://www.instagram.com/morrismodern/?hl=en"
               target="_blank"
+              _hover={{ textDecoration: "none" }}
             >
-              here
-            </UnderlineLink>
+              <UnderlineText>here</UnderlineText>
+            </Link>
             . I love the design aesthetic of the mid century period, and there's
             something immeasurably satisfying about working with wood, and
             bringing something old back to life.

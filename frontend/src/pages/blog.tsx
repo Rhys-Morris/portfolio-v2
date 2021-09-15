@@ -13,38 +13,19 @@ import {
 import Footer from "../components/Footer";
 import React from "react";
 import readingTime from "reading-time";
-import PostCard from "../components/PostCard";
+import { PostCard1 } from "../components/PostCard";
 import DrifterStars from "@devil7softwares/react-drifter-stars";
 import APP_COLORS from "../style/colorTheme";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
-import NextLink from "next/link";
-
-interface Post {
-  id: number;
-  title: string;
-  content: string;
-  created_at: any;
-  updated_at: any;
-  published_at: any;
-}
-
-interface PostWithReadingTime extends Post {
-  readTime: {
-    minutes: number;
-    text: string;
-    time: number;
-    words: number;
-  };
-}
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import MinimalNav from "../components/MinimalNav";
+import { fetchData } from "../lib/api";
 
 const BlogIndex = () => {
   const {
     colorMode,
-    toggleColorMode,
   }: {
     colorMode: "light" | "dark";
-    toggleColorMode: () => void;
   } = useColorMode();
 
   // Post state
@@ -56,6 +37,32 @@ const BlogIndex = () => {
     PostWithReadingTime[],
     (posts: PostWithReadingTime[]) => void
   ] = React.useState([]);
+
+  React.useEffect(() => {
+    // Set title
+    document.title = "Rhys Morris - Blog";
+
+    // Get posts
+    fetchData("/posts").then((data) => {
+      const withReadingTime: PostWithReadingTime[] = data.map((post) => ({
+        ...post,
+        readTime: readingTime(post.content),
+      }));
+      setPosts(withReadingTime);
+      setFilteredPosts(withReadingTime);
+    });
+  }, []);
+
+  // Filter posts
+  const filterPosts = (searchString) => {
+    if (!searchString) {
+      setFilteredPosts(posts);
+      return;
+    }
+    const testRegExp = new RegExp(searchString, "i");
+    const filtered = posts.filter((post) => post.title.match(testRegExp));
+    setFilteredPosts(filtered);
+  };
 
   // Canvas Style
   const bgStyle = {
@@ -70,79 +77,17 @@ const BlogIndex = () => {
     zIndex: "-1",
   };
 
-  React.useEffect(() => {
-    // Set title
-    document.title = "Rhys Morris - Blog";
-
-    // Get posts
-    axios
-      .get("http://localhost:1337/posts", {
-        headers: {
-          Accept: "application/json",
-        },
-      })
-      .then((response) => {
-        const withReadingTime: PostWithReadingTime[] = response.data.map(
-          (post) => ({
-            ...post,
-            readTime: readingTime(post.content),
-          })
-        );
-        setPosts(withReadingTime);
-        setFilteredPosts(withReadingTime);
-      });
-  }, []);
-
-  // Filter posts
-  const filterPosts = (searchString) => {
-    if (!searchString) {
-      setFilteredPosts(posts);
-      return;
-    }
-    const testRegExp = new RegExp(searchString, "i");
-    const filtered = posts.filter((post) => post.title.match(testRegExp));
-    setFilteredPosts(filtered);
-  };
-
-  console.log(posts);
   return (
     <Flex direction="column" justify="space-between" minHeight="100vh">
-      <section style={{ maxWidth: "1200px", width: "90%", margin: "0 auto" }}>
-        <Flex
-          padding="30px 50px"
-          position="absolute"
-          top="0"
-          left="0"
-          justify="space-between"
-          align="center"
-          width="100%"
-        >
-          <Link as={NextLink} href="/">
-            <Flex align="center" justify="center" cursor="pointer">
-              <Text fontSize="25px" display="inline-block" fontWeight="bolder">
-                {"{"}
-              </Text>
-              <Text
-                display="inline-block"
-                fontSize="20px"
-                color={APP_COLORS.fontHighlight}
-                p="5px"
-                fontWeight="normal"
-              >
-                RM
-              </Text>
-              <Text fontSize="25px" display="inline-block" fontWeight="bolder">
-                {"}"}
-              </Text>
-            </Flex>
-          </Link>
-          <FontAwesomeIcon
-            onClick={toggleColorMode}
-            style={{ cursor: "pointer" }}
-            icon={colorMode === "light" ? faMoon : faSun}
-            size="2x"
-          />
-        </Flex>
+      <section
+        style={{
+          maxWidth: "1200px",
+          width: "95%",
+          margin: "0 auto",
+          marginTop: "100px",
+        }}
+      >
+        <MinimalNav />
         <DrifterStars
           style={bgStyle}
           color={
@@ -152,12 +97,12 @@ const BlogIndex = () => {
           }
           motion={{ ratio: 0.03 }}
         />
-        <Flex direction="column" padding="0 50px" paddingTop="100px">
+        <Flex direction="column" padding="0 25px" paddingTop="100px">
           <Heading mb="20px">My Blog</Heading>
           <Text mb="10px">
-            A place for me to share my thoughts, learnings and experiences.
+            A place for me to pass on experience, learnings and my own thoughts.
           </Text>
-          <InputGroup>
+          <InputGroup mt="10px" mb="20px">
             <InputLeftElement
               pointerEvents="none"
               children={<FontAwesomeIcon icon={faSearch} />}
@@ -169,10 +114,10 @@ const BlogIndex = () => {
               onChange={(event) => filterPosts(event.target.value)}
             />
           </InputGroup>
-          <Flex>
+          <Flex w="100%" direction="column">
             {filteredPosts?.length > 0 &&
               filteredPosts?.map((post) => (
-                <PostCard key={post.id} post={post} />
+                <PostCard1 key={post.id} post={post} />
               ))}
             {filteredPosts?.length === 0 && (
               <Text mt="20px">No blog posts to display</Text>

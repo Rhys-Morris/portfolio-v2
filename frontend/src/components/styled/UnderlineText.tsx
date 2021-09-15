@@ -1,17 +1,17 @@
 import styled from "@emotion/styled";
 import APP_COLORS from "../../style/colorTheme";
 
-const UnderlineLink = styled.a`
-  color: ${APP_COLORS.fontHighlight};
+const UnderlineText = styled.span`
+  color: ${(props) => (props.color ? props.color : APP_COLORS.fontHighlight)};
   position: relative;
   font-weight: bold;
 
   &:after {
     content: "";
-    width: 0%;
+    width: 0px;
     transition: 0.3s all;
-    background: ${APP_COLORS.fontHighlight};
     height: 2px;
+    background: ${APP_COLORS.fontHighlight};
     position: absolute;
     top: 100%;
     left: 0;
@@ -24,4 +24,4 @@ const UnderlineLink = styled.a`
   }
 `;
 
-export default UnderlineLink;
+export default UnderlineText;

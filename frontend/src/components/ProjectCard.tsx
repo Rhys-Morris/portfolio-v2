@@ -16,7 +16,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const MotionFlex = motion(Flex);
 
-const ProjectCard = ({ project, key }) => {
+const ProjectCard = ({ project }) => {
   const { colorMode } = useColorMode();
   const { title, description, imageUrl, technologies, resourceUrls } = project;
   const [githubLink, liveLink] = resourceUrls;

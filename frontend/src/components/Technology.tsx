@@ -24,6 +24,7 @@ import {
   SiNextDotJs,
   SiNetlify,
   SiHeroku,
+  SiTypescript,
 } from "react-icons/si";
 import { motion } from "framer-motion";
 
@@ -98,6 +99,10 @@ const Technology = () => {
           <Flex direction="column" m="0 10px" align="center">
             <DiJsBadge size="40px" />
             <Text>JavaScript</Text>
+          </Flex>
+          <Flex direction="column" m="0 10px" align="center">
+            <SiTypescript size="40px" />
+            <Text>TypeScript</Text>
           </Flex>
           <Flex direction="column" m="0 10px" align="center">
             <DiReact size="40px" />
