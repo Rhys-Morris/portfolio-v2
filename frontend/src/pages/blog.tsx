@@ -82,7 +82,7 @@ const BlogIndex = () => {
       <section
         style={{
           maxWidth: "1200px",
-          width: "95%",
+          width: "98%",
           margin: "0 auto",
           marginTop: "100px",
         }}
@@ -109,7 +109,8 @@ const BlogIndex = () => {
             />
             <Input
               placeholder="Search for a post"
-              width="50%"
+              maxWidth="500px"
+              width="100%"
               borderWidth="2px"
               onChange={(event) => filterPosts(event.target.value)}
             />

@@ -105,37 +105,38 @@ const Article = () => {
         <Heading as="h1" size="3xl" m="20px 0">
           {post?.title}
         </Heading>
-        <Flex align="center">
+        <Flex align="center" wrap="wrap">
           <Image width="50px" src="/photo.png" borderRadius="50%" />
           <Text ml="10px" fontWeight="bold" fontFamily="iosevka">
             Rhys Morris
           </Text>
-
-          <Text ml="20px">
-            {new Date(post?.published_at).toLocaleDateString("en-UK", {
-              month: "long",
-              day: "numeric",
-              year: "numeric",
-            })}
-          </Text>
-          <Divider
-            orientation="vertical"
-            bg={APP_COLORS.fontHighlight}
-            borderRadius="50%"
-            w="8px"
-            h="8px"
-            ml="10px"
-          />
-          <Text
-            ml="10px"
-            color={
-              colorMode === "light"
-                ? APP_COLORS.dimCanvasLight
-                : APP_COLORS.dimCanvasDark
-            }
-          >
-            {post?.readTime?.text}
-          </Text>
+          <Flex align="center" p="5px">
+            <Text ml="20px">
+              {new Date(post?.published_at).toLocaleDateString("en-UK", {
+                month: "long",
+                day: "numeric",
+                year: "numeric",
+              })}
+            </Text>
+            <Divider
+              orientation="vertical"
+              bg={APP_COLORS.fontHighlight}
+              borderRadius="50%"
+              w="8px"
+              h="8px"
+              ml="10px"
+            />
+            <Text
+              ml="10px"
+              color={
+                colorMode === "light"
+                  ? APP_COLORS.dimCanvasLight
+                  : APP_COLORS.dimCanvasDark
+              }
+            >
+              {post?.readTime?.text}
+            </Text>
+          </Flex>
         </Flex>
         <Box
           w="100%"

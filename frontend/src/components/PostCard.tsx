@@ -18,17 +18,16 @@ export const PostCard1 = ({ post }) => {
   }: PostWithReadingTime = post;
 
   return (
-    <Flex
-      m="10px 0"
-      align="center"
-      maxWidth="100%"
-      w="100%"
-      p="15px"
-      zIndex="1"
-    >
+    <Flex m="10px 0" align="center" maxWidth="800px" w="100%" zIndex="1">
       <Flex direction="column">
         <Flex direction="row">
-          <Flex align="start" direction="column" mr="30px">
+          <Flex
+            align="start"
+            direction="column"
+            mr="30px"
+            w="20%"
+            maxWidth="200px"
+          >
             <Text mb="5px">
               {new Date(published).toLocaleDateString("en-UK", {
                 month: "long",
@@ -37,7 +36,6 @@ export const PostCard1 = ({ post }) => {
               })}
             </Text>
             <Text
-              alignSelf="flex-end"
               color={
                 colorMode === "light"
                   ? APP_COLORS.dimCanvasLight
@@ -47,7 +45,7 @@ export const PostCard1 = ({ post }) => {
               {readTime.text}
             </Text>
           </Flex>
-          <Flex direction="column" width="50%" flex="1">
+          <Flex direction="column" flex="1">
             <Link as={NextLink} href={`/blog/${id}`}>
               <Text
                 cursor="pointer"
@@ -91,7 +89,7 @@ export const PostCard2 = ({ post }) => {
       m="10px 0"
       align="center"
       maxWidth="550px"
-      width="45%"
+      width="100%"
       p="15px"
       zIndex="1"
     >

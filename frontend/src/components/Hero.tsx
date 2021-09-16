@@ -3,9 +3,9 @@ import {
   Heading,
   Center,
   Flex,
-  Link,
   useColorMode,
   Divider,
+  useMediaQuery,
 } from "@chakra-ui/react";
 import DrifterStars from "@devil7softwares/react-drifter-stars";
 import APP_COLORS from "../style/colorTheme";
@@ -71,16 +71,25 @@ const Hero = () => {
         <Flex
           direction="column"
           align="center"
+          w="90vw"
+          maxWidth="420px"
+          textAlign="center"
           color={
             colorMode === "light"
               ? APP_COLORS.secondaryLight
               : APP_COLORS.secondaryDark
           }
         >
-          <Heading zIndex="2" as="h1" size="4xl" mb="10px">
+          <Heading zIndex="2" as="h1" size="3xl" mb="10px">
             Rhys Morris
           </Heading>
-          <Heading zIndex="2" as="h2" fontFamily="iosevka" marginBottom="20px">
+          <Heading
+            zIndex="2"
+            as="h2"
+            size="xl"
+            fontFamily="iosevka"
+            marginBottom="20px"
+          >
             Software Developer
           </Heading>
           <Flex align="center" zIndex="2" width="100%">

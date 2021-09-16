@@ -31,13 +31,12 @@ const About = () => {
             zIndex="0"
             borderRadius="100%"
             float={breakpoint1000 ? "none" : "left"}
-            margin={breakpoint1000 ? "20px auto" : "10px 30px"}
+            margin={breakpoint1000 ? "20px auto" : "10px 30px 0 0"}
             style={{ shapeOutside: "circle(50%)" }}
           />
           <Text
             zIndex="0"
             textAlign="justify"
-            pr={breakpoint1000 ? "0" : "100px"}
             maxWidth={breakpoint1000 ? "500px" : null}
             fontSize="17px"
           >

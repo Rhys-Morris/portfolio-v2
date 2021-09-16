@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 
 const listItemStyle = {
-  marginRight: "30px",
+  marginRight: "3vw",
   fontSize: "20px",
   paddingBottom: "3px",
   borderBottom: "2px solid transparent",
@@ -34,12 +34,13 @@ const Nav = () => {
       <Flex
         width="100%"
         justify="space-between"
+        align="center"
         color={
           colorMode === "light"
             ? APP_COLORS.secondaryLight
             : APP_COLORS.secondaryDark
         }
-        p="0 40px"
+        p="0 3.5vw"
         pt="20px"
         pb="5px"
         bg={
@@ -57,7 +58,7 @@ const Nav = () => {
               display="inline-block"
               fontSize="20px"
               color={APP_COLORS.fontHighlight}
-              p="5px"
+              p="0 5px"
               fontWeight="normal"
             >
               RM
@@ -84,9 +85,8 @@ const Nav = () => {
           <li>
             <FontAwesomeIcon
               onClick={toggleColorMode}
-              style={{ cursor: "pointer" }}
+              style={{ cursor: "pointer", fontSize: "30px" }}
               icon={colorMode === "light" ? faMoon : faSun}
-              size="2x"
             />
           </li>
         </ul>

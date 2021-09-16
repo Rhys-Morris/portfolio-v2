@@ -19,7 +19,7 @@ const ProjectCard = ({ project }) => {
   const { colorMode } = useColorMode();
   const { title, description, imageUrl, technologies, resourceUrls } = project;
   const [githubLink, liveLink] = resourceUrls;
-  const [breakpoint850] = useMediaQuery("(max-width: 850px)");
+
   return (
     <MotionFlex
       initial={{ opacity: 0, y: 50 }}
@@ -27,7 +27,7 @@ const ProjectCard = ({ project }) => {
       transition={{ duration: 0.5 }}
       direction="column"
       maxWidth="500px"
-      width={breakpoint850 ? "100%" : "45%"}
+      width="100%"
       zIndex="0"
       borderRadius="5px"
       p="10px"
