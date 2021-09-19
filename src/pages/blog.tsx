@@ -43,7 +43,7 @@ const BlogIndex = () => {
     document.title = "Rhys Morris - Blog";
 
     // Get posts
-    fetchData("/posts").then((data) => {
+    fetchData("posts").then((data) => {
       const withReadingTime: PostWithReadingTime[] = data.map((post) => ({
         ...post,
         readTime: readingTime(post.content),
@@ -65,7 +65,7 @@ const BlogIndex = () => {
   };
 
   // Canvas Style
-  const bgStyle = {
+  const bgStyle: Background = {
     background:
       colorMode === "light"
         ? `radial-gradient(ellipse at center, ${APP_COLORS.tertiaryLight} 0%, ${APP_COLORS.primaryLight} 80%)`
@@ -73,8 +73,8 @@ const BlogIndex = () => {
     display: "block",
     inset: 0,
     width: "100%",
-    position: "fixed",
-    zIndex: "-1",
+    zIndex: -1,
+    position: "absolute",
   };
 
   return (

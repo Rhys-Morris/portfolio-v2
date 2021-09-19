@@ -1,7 +1,8 @@
 import axios from "axios";
 
 export function getStrapiUrl(path = "") {
-  return `${process.env.STRAPI_API_URL || "http://localhost:1337"}${path}`;
+  console.log(process.env.NEXT_PUBLIC_STRAPI_URL);
+  return `${process.env.NEXT_PUBLIC_STRAPI_URL}${path}`;
 }
 
 export async function fetchData(path: string) {

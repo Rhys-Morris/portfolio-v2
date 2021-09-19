@@ -15,7 +15,7 @@ const Blog = () => {
 
   React.useEffect(() => {
     // Get posts
-    fetchData("/posts?_limit=2").then((data) => {
+    fetchData("posts?_limit=2").then((data) => {
       const posts = data.map((post) => ({
         ...post,
         readTime: readingTime(post.content),

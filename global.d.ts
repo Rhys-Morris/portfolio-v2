@@ -21,3 +21,12 @@ interface PostWithReadingTime extends Post {
 }
 
 type colorMode = "light" | "dark";
+
+interface Background {
+  background: string;
+  position: "absolute" | "fixed";
+  display: string;
+  inset: number;
+  width: string;
+  zIndex: number;
+}

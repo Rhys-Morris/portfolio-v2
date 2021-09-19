@@ -49,7 +49,7 @@ const Article = () => {
   const { colorMode } = useColorMode();
 
   // Canvas Style
-  const bgStyle = {
+  const bgStyle: Background = {
     background:
       colorMode === "light"
         ? `radial-gradient(ellipse at center, ${APP_COLORS.tertiaryLight} 0%, ${APP_COLORS.primaryLight} 80%)`
@@ -57,15 +57,15 @@ const Article = () => {
     display: "block",
     inset: 0,
     width: "100%",
-    position: "fixed",
-    zIndex: "-1",
+    zIndex: -1,
+    position: "absolute",
   };
 
   // Get post
   React.useEffect(() => {
     if (!id) return;
     // Get posts
-    fetchData(`/posts/${id}`)
+    fetchData(`posts/${id}`)
       .then((data) => {
         const post = {
           ...data,

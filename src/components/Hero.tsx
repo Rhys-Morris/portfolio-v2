@@ -26,7 +26,7 @@ const Hero = () => {
   const { colorMode } = useColorMode();
   const [dimCanvas, setDimCanvas] = React.useState(false);
 
-  const bgStyle = {
+  const bgStyle: Background = {
     background:
       colorMode === "light"
         ? `radial-gradient(ellipse at center, ${APP_COLORS.tertiaryLight} 0%, ${APP_COLORS.primaryLight} 80%)`
@@ -34,6 +34,7 @@ const Hero = () => {
     display: "block",
     inset: 0,
     width: "100%",
+    zIndex: 0,
     position: "fixed",
   };
 
