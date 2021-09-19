@@ -18,8 +18,9 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 
 const sectionStyle = {
-  width: "98vw", // TO FIX
+  width: "98vw",
   height: "100vh",
+  minHeight: "-webkit-fill-available",
 };
 
 const Hero = () => {
@@ -94,7 +95,12 @@ const Hero = () => {
             Software Developer
           </Heading>
           <Flex align="center" zIndex="2" width="100%">
-            <Divider bg={APP_COLORS.fontHighlight} h="2px" mr="10px" />
+            <Divider
+              bg={APP_COLORS.fontHighlight}
+              h="2px"
+              mr="10px"
+              maxWidth="40%"
+            />
             <a
               href="https://au.linkedin.com/in/rhys-morris-37ba241b9"
               target="_blank"
@@ -121,7 +127,12 @@ const Hero = () => {
                 }}
               />
             </a>
-            <Divider bg={APP_COLORS.fontHighlight} h="2px" ml="10px" />
+            <Divider
+              bg={APP_COLORS.fontHighlight}
+              h="2px"
+              ml="10px"
+              maxWidth="40%"
+            />
           </Flex>
         </Flex>
       </Center>

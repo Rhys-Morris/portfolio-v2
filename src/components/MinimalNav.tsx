@@ -9,7 +9,9 @@ const MinimalNav = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
     <Flex
-      padding="30px 50px"
+      p="0 3.5vw"
+      pt="15px"
+      pb="5px"
       position="absolute"
       top="0"
       left="0"
@@ -19,19 +21,19 @@ const MinimalNav = () => {
     >
       <Link as={NextLink} href="/">
         <Flex align="center" justify="center" cursor="pointer">
-          <Text fontSize="25px" display="inline-block" fontWeight="bolder">
+          <Text fontSize="2xl" display="inline-block" fontWeight="bolder">
             {"{"}
           </Text>
           <Text
             display="inline-block"
-            fontSize="20px"
+            fontSize="2xl"
             color={APP_COLORS.fontHighlight}
             p="5px"
             fontWeight="normal"
           >
             RM
           </Text>
-          <Text fontSize="25px" display="inline-block" fontWeight="bolder">
+          <Text fontSize="2xl" display="inline-block" fontWeight="bolder">
             {"}"}
           </Text>
         </Flex>

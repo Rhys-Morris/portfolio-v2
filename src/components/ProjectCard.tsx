@@ -69,7 +69,7 @@ const ProjectCard = ({ project }) => {
           </Badge>
         ))}
       </Flex>
-      <Text>{description}</Text>
+      <Text textAlign="justify">{description}</Text>
     </MotionFlex>
   );
 };

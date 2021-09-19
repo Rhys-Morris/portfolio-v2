@@ -5,13 +5,6 @@ import NextLink from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 
-const listItemStyle = {
-  marginRight: "3vw",
-  fontSize: "20px",
-  paddingBottom: "3px",
-  borderBottom: "2px solid transparent",
-};
-
 const Nav = () => {
   const {
     colorMode,
@@ -41,7 +34,7 @@ const Nav = () => {
             : APP_COLORS.secondaryDark
         }
         p="0 3.5vw"
-        pt="20px"
+        pt="15px"
         pb="5px"
         bg={
           colorMode === "light"
@@ -51,41 +44,76 @@ const Nav = () => {
       >
         <Link as={NextLink} href="/">
           <Flex align="center" justify="center" cursor="pointer">
-            <Text fontSize="25px" display="inline-block" fontWeight="bolder">
+            <Text display="inline-block" fontWeight="bolder" fontSize="2xl">
               {"{"}
             </Text>
             <Text
               display="inline-block"
-              fontSize="20px"
               color={APP_COLORS.fontHighlight}
               p="0 5px"
               fontWeight="normal"
+              fontSize="2xl"
             >
               RM
             </Text>
-            <Text fontSize="25px" display="inline-block" fontWeight="bolder">
+            <Text display="inline-block" fontWeight="bolder" fontSize="2xl">
               {"}"}
             </Text>
           </Flex>
         </Link>
         <ul style={{ listStyle: "none", display: "flex" }}>
-          <li style={listItemStyle}>
-            <a href="#work">Work</a>
+          <li>
+            <Link
+              href="#work"
+              mr="20px"
+              fontSize="large"
+              _hover={{
+                textDecoration: "none",
+                color:
+                  colorMode === "light"
+                    ? APP_COLORS.dimCanvasLight
+                    : APP_COLORS.dimCanvasDark,
+              }}
+            >
+              Work
+            </Link>
           </li>
-          <li style={listItemStyle}>
-            <a color="red" href="#contact">
+          <li>
+            <Link
+              href="#contact"
+              mr="20px"
+              fontSize="large"
+              _hover={{
+                textDecoration: "none",
+                color:
+                  colorMode === "light"
+                    ? APP_COLORS.dimCanvasLight
+                    : APP_COLORS.dimCanvasDark,
+              }}
+            >
               Contact
-            </a>
+            </Link>
           </li>
-          <li style={listItemStyle}>
-            <Link as={NextLink} href="/blog">
+          <li>
+            <Link
+              href="/blog"
+              fontSize="large"
+              _hover={{
+                textDecoration: "none",
+                color:
+                  colorMode === "light"
+                    ? APP_COLORS.dimCanvasLight
+                    : APP_COLORS.dimCanvasDark,
+              }}
+            >
               Blog
             </Link>
           </li>
           <li>
             <FontAwesomeIcon
               onClick={toggleColorMode}
-              style={{ cursor: "pointer", fontSize: "30px" }}
+              size="2x"
+              style={{ cursor: "pointer", marginLeft: "20px" }}
               icon={colorMode === "light" ? faMoon : faSun}
             />
           </li>

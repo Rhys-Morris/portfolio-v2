@@ -13,3 +13,8 @@ export const convertImageUrls = (content: string): string => {
   });
   return content;
 };
+
+export const validateName: (name: string) => true = (name) => {
+  if (name === "") throw new Error("Name must not be empty");
+  return true;
+};

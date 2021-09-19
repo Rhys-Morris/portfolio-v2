@@ -78,7 +78,12 @@ const Article = () => {
   }, [id]);
 
   return (
-    <Flex direction="column" align="center" justify="center">
+    <Flex
+      direction="column"
+      align="center"
+      justify="space-between"
+      minHeight="100vh"
+    >
       <MinimalNav />
       <DrifterStars
         style={bgStyle}

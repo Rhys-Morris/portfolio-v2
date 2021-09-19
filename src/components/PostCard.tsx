@@ -95,7 +95,7 @@ export const PostCard2 = ({ post }) => {
     >
       <Flex direction="column" w="100%" align="start">
         <Flex align="start" direction="column" mr="30px" w="100%">
-          <Flex direction="row" justify="space-between" w="100%">
+          <Flex direction="row" justify="space-between" w="100%" wrap="wrap">
             <Link as={NextLink} href={`/blog/${id}`}>
               <Text
                 cursor="pointer"
@@ -116,7 +116,6 @@ export const PostCard2 = ({ post }) => {
                 })}
               </Text>
               <Text
-                alignSelf="flex-end"
                 color={
                   colorMode === "light"
                     ? APP_COLORS.dimCanvasLight
@@ -128,7 +127,9 @@ export const PostCard2 = ({ post }) => {
             </Flex>
           </Flex>
         </Flex>
-        <Text mb="10px">{summary}</Text>
+        <Text mb="10px" textAlign="justify">
+          {summary}
+        </Text>
         <Link as={NextLink} href={`/blog/${id}`}>
           <UnderlineText
             color={

@@ -38,7 +38,6 @@ const About = () => {
             zIndex="0"
             textAlign="justify"
             maxWidth={breakpoint1000 ? "500px" : null}
-            fontSize="17px"
           >
             G'day! I'm Rhys, a software developer based in Melbourne, Australia.
             I've recently started my first position as a developer after

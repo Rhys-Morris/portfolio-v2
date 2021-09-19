@@ -14,11 +14,15 @@ import APP_COLORS from "../style/colorTheme";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTwitter, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { faMailBulk } from "@fortawesome/free-solid-svg-icons";
+import { validateName } from "../lib/helpers";
+import { useForm, ValidationError } from "@formspree/react";
 
 const Contact = () => {
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [message, setMessage] = React.useState("");
+  const [state, handleSubmit] = useForm("xwkwborr");
+  const [error, setError] = React.useState(null);
 
   const { colorMode } = useColorMode();
   return (
@@ -45,11 +49,22 @@ const Contact = () => {
               Get in touch!
             </Heading>
           </Flex>
-          <Text textAlign="center" mb="20px" fontSize="18px">
+          <Text textAlign="center" mb="20px">
             I'm always open to work opportunities! Reach out and we can have a
             chat.
           </Text>
-          <form>
+          <form
+            method="POST"
+            onSubmit={(e) => {
+              try {
+                e.preventDefault();
+                validateName(name);
+                handleSubmit(e);
+              } catch (e) {
+                setError(e.message);
+              }
+            }}
+          >
             <FormControl mb="30px">
               <FormLabel size="sm">Name</FormLabel>
               <Input
@@ -57,8 +72,11 @@ const Contact = () => {
                 borderColor={APP_COLORS.fontHighlight}
                 placeholder="Rhys Morris"
                 value={name}
-                onChange={(e) => setName(e.target.value)}
-                fontSize="20px"
+                name="name"
+                onChange={(e) => {
+                  setName(e.target.value);
+                  setError(null);
+                }}
               />
             </FormControl>
             <FormControl mb="30px">
@@ -67,10 +85,11 @@ const Contact = () => {
                 variant="flushed"
                 borderColor={APP_COLORS.fontHighlight}
                 placeholder="Rhys@example.com"
+                type="email"
+                name="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 mb="10px"
-                fontSize="20px"
               />
             </FormControl>
             <FormControl mb="30px">
@@ -80,10 +99,10 @@ const Contact = () => {
                 borderColor={APP_COLORS.fontHighlight}
                 height="100px"
                 type="textarea"
+                name="message"
                 placeholder="Type your message here"
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                fontSize="20px"
                 mb="10px"
               />
             </FormControl>
@@ -91,11 +110,18 @@ const Contact = () => {
               width="100%"
               colorScheme={colorMode === "light" ? "gray" : "blue"}
               bg={colorMode === "dark" ? APP_COLORS.fontHighlight : null}
+              type="submit"
+              disabled={state.submitting}
             >
               Submit
             </Button>
+            {error && (
+              <Text mt="10px" color="red.300" textAlign="center">
+                {error || state.errors}
+              </Text>
+            )}
           </form>
-          <Text textAlign="center" mt="50px" mb="20px" fontSize="18px">
+          <Text textAlign="center" mt="50px" mb="20px">
             I'm also reachable on social media, if that's your preferred method
             of communication:
           </Text>
