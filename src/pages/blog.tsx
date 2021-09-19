@@ -2,13 +2,13 @@ import { GetServerSideProps, GetStaticProps } from "next";
 import axios from "axios";
 import {
   Flex,
-  Link,
   Heading,
   Text,
   useColorMode,
   Input,
   InputGroup,
   InputLeftElement,
+  Spinner,
 } from "@chakra-ui/react";
 import Footer from "../components/Footer";
 import React from "react";
@@ -38,19 +38,34 @@ const BlogIndex = () => {
     (posts: PostWithReadingTime[]) => void
   ] = React.useState([]);
 
+  const [loading, setLoading] = React.useState(false);
+  const [error, setError]: [
+    error: null | string,
+    setError: React.Dispatch<React.SetStateAction<null | string>>
+  ] = React.useState(null);
+
   React.useEffect(() => {
     // Set title
     document.title = "Rhys Morris - Blog";
 
     // Get posts
-    fetchData("posts").then((data) => {
-      const withReadingTime: PostWithReadingTime[] = data.map((post) => ({
-        ...post,
-        readTime: readingTime(post.content),
-      }));
-      setPosts(withReadingTime);
-      setFilteredPosts(withReadingTime);
-    });
+    setLoading(true);
+    setError(null);
+    fetchData("posts")
+      .then((data) => {
+        setLoading(false);
+        if (!data)
+          throw new Error(
+            "Unable to retrieve posts at this time, please try again later."
+          );
+        const withReadingTime: PostWithReadingTime[] = data.map((post) => ({
+          ...post,
+          readTime: readingTime(post.content),
+        }));
+        setPosts(withReadingTime);
+        setFilteredPosts(withReadingTime);
+      })
+      .catch((e) => setError(e.message));
   }, []);
 
   // Filter posts
@@ -115,15 +130,19 @@ const BlogIndex = () => {
               onChange={(event) => filterPosts(event.target.value)}
             />
           </InputGroup>
-          <Flex w="100%" direction="column">
-            {filteredPosts?.length > 0 &&
-              filteredPosts?.map((post) => (
-                <PostCard1 key={post.id} post={post} />
-              ))}
-            {filteredPosts?.length === 0 && (
-              <Text mt="20px">No blog posts to display</Text>
-            )}
-          </Flex>
+          {loading && <Spinner mt="10px" size="xl" />}
+          {error && <Text mt="10px">{error}</Text>}
+          {!loading && !error && (
+            <Flex w="100%" direction="column">
+              {filteredPosts?.length > 0 &&
+                filteredPosts?.map((post) => (
+                  <PostCard1 key={post.id} post={post} />
+                ))}
+              {filteredPosts?.length === 0 && (
+                <Text mt="20px">No blog posts to display</Text>
+              )}
+            </Flex>
+          )}
         </Flex>
       </section>
       <Footer />

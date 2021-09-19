@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Heading,
-  Center,
-  Flex,
-  useColorMode,
-  Divider,
-  useMediaQuery,
-} from "@chakra-ui/react";
+import { Heading, Center, Flex, useColorMode, Divider } from "@chakra-ui/react";
 import DrifterStars from "@devil7softwares/react-drifter-stars";
 import APP_COLORS from "../style/colorTheme";
 import Nav from "./Nav";
@@ -16,6 +9,7 @@ import {
   faGithubSquare,
   faTwitterSquare,
 } from "@fortawesome/free-brands-svg-icons";
+import { debounce } from "../lib/helpers";
 
 const sectionStyle = {
   width: "98vw",
@@ -40,6 +34,7 @@ const Hero = () => {
   };
 
   const onScroll = () => {
+    console.log("scroll");
     if (window.scrollY > window.innerHeight / 2) {
       setDimCanvas(true);
     }
@@ -49,7 +44,7 @@ const Hero = () => {
   };
 
   React.useEffect(() => {
-    window.addEventListener("scroll", onScroll);
+    window.addEventListener("scroll", debounce(onScroll));
     return () => window.removeEventListener("scroll", onscroll);
   }, []);
 

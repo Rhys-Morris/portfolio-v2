@@ -65,7 +65,7 @@ const Nav = () => {
           <li>
             <Link
               href="#work"
-              mr="20px"
+              mr="30px"
               fontSize="large"
               _hover={{
                 textDecoration: "none",
@@ -81,7 +81,7 @@ const Nav = () => {
           <li>
             <Link
               href="#contact"
-              mr="20px"
+              mr="30px"
               fontSize="large"
               _hover={{
                 textDecoration: "none",
@@ -113,7 +113,7 @@ const Nav = () => {
             <FontAwesomeIcon
               onClick={toggleColorMode}
               size="2x"
-              style={{ cursor: "pointer", marginLeft: "20px" }}
+              style={{ cursor: "pointer", marginLeft: "30px" }}
               icon={colorMode === "light" ? faMoon : faSun}
             />
           </li>
