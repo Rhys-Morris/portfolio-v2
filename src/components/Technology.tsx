@@ -33,6 +33,7 @@ import {
   SiNetlify,
   SiHeroku,
   SiTypescript,
+  SiStrapi,
 } from "react-icons/si";
 import { motion } from "framer-motion";
 
@@ -176,6 +177,10 @@ const Technology = () => {
           <Flex direction="column" m="5px 10px" align="center">
             <DiPostgresql size="40px" />
             <Text>PostgreSQL</Text>
+          </Flex>
+          <Flex direction="column" m="5px 10px" align="center">
+            <SiStrapi size="40px" />
+            <Text>Strapi</Text>
           </Flex>
         </MotionFlex>
       )}

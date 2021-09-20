@@ -1,7 +1,6 @@
 import axios from "axios";
 
 export function getStrapiUrl(path = "") {
-  console.log(process.env.NEXT_PUBLIC_STRAPI_URL);
   return `${process.env.NEXT_PUBLIC_STRAPI_URL}${path}`;
 }
 

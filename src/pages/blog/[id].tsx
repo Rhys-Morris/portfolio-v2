@@ -83,6 +83,10 @@ const Article = () => {
           throw new Error(
             "Unable to retrieve posts at this time, please try again later."
           );
+
+        // Set title
+        document.title = data.title;
+
         const post = {
           ...data,
           content: convertImageUrls(data.content),
