@@ -9,20 +9,27 @@ import {
   Center,
   Button,
   Text,
+  Modal,
+  ModalContent,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
 } from "@chakra-ui/react";
 import APP_COLORS from "../style/colorTheme";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTwitter, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { faMailBulk } from "@fortawesome/free-solid-svg-icons";
-import { validateName } from "../lib/helpers";
-import { useForm, ValidationError } from "@formspree/react";
+import { validateForm } from "../lib/helpers";
+import { useForm } from "@formspree/react";
 
 const Contact = () => {
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [message, setMessage] = React.useState("");
   const [state, handleSubmit] = useForm("xwkwborr");
-  const [error, setError] = React.useState(null);
+  const [emailError, setEmailError] = React.useState(null);
+  const [nameError, setNameError] = React.useState(null);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const { colorMode } = useColorMode();
   return (
@@ -38,6 +45,19 @@ const Contact = () => {
       }}
     >
       <Center>
+        {/* Modal if successful form submission */}
+        <Modal isOpen={isOpen} onClose={onClose} isCentered>
+          <ModalContent
+            p="30px"
+            bg={colorMode === "light" ? "gray.100" : APP_COLORS.fontHighlight}
+            color="black"
+          >
+            <ModalCloseButton />
+            <ModalBody textAlign="center">
+              Form successfully submitted!
+            </ModalBody>
+          </ModalContent>
+        </Modal>
         <Flex direction="column" maxWidth="750px" width="80vw" zIndex="2">
           <Flex align="center" justify="center" mb="20px">
             <FontAwesomeIcon
@@ -58,10 +78,14 @@ const Contact = () => {
             onSubmit={(e) => {
               try {
                 e.preventDefault();
-                validateName(name);
+                validateForm(name, email);
                 handleSubmit(e);
+                onOpen();
               } catch (e) {
-                setError(e.message);
+                if (e.message === "Email is an invalid format")
+                  setEmailError(e.message);
+                if (e.message === "Name must not be empty")
+                  setNameError(e.message);
               }
             }}
           >
@@ -75,9 +99,14 @@ const Contact = () => {
                 name="name"
                 onChange={(e) => {
                   setName(e.target.value);
-                  setError(null);
+                  setNameError(null);
                 }}
               />
+              {nameError && (
+                <Text mt="10px" color="red.300">
+                  {nameError}
+                </Text>
+              )}
             </FormControl>
             <FormControl mb="30px">
               <FormLabel size="sm">Email</FormLabel>
@@ -88,9 +117,17 @@ const Contact = () => {
                 type="email"
                 name="email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  setEmailError(null);
+                }}
                 mb="10px"
               />
+              {emailError && (
+                <Text mt="10px" color="red.300">
+                  {emailError}
+                </Text>
+              )}
             </FormControl>
             <FormControl mb="30px">
               <FormLabel size="sm">Message</FormLabel>
@@ -115,11 +152,6 @@ const Contact = () => {
             >
               Submit
             </Button>
-            {error && (
-              <Text mt="10px" color="red.300" textAlign="center">
-                {error || state.errors}
-              </Text>
-            )}
           </form>
           <Text textAlign="center" mt="50px" mb="20px">
             I'm also reachable on social media, if that's your preferred method

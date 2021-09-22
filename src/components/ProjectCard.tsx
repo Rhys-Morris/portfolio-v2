@@ -31,7 +31,7 @@ const ProjectCard = ({ project }) => {
       zIndex="0"
       borderRadius="5px"
       p="10px"
-      margin="20px 0"
+      margin="20px"
     >
       <Box
         h="180px"

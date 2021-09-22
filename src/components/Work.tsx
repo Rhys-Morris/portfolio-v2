@@ -35,7 +35,7 @@ const Work = () => {
         <Flex
           justify="space-around"
           align="start"
-          maxWidth="1000px"
+          maxWidth="1100px"
           width="90vw"
           flexWrap="wrap"
         >
