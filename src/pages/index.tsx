@@ -1,5 +1,5 @@
 import React from "react";
-import { useColorMode } from "@chakra-ui/react";
+import { useColorMode } from "@chakra-ui/color-mode";
 import Nav from "../components/Nav";
 import Hero from "../components/Hero";
 import Work from "../components/Work";

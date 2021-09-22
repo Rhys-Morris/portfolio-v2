@@ -1,5 +1,6 @@
 import React from "react";
-import { Flex, useColorMode } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/layout";
+import { useColorMode } from "@chakra-ui/color-mode";
 import Footer from "../../components/Footer";
 import Posts from "../../components/Posts";
 import DrifterStars from "@devil7softwares/react-drifter-stars";

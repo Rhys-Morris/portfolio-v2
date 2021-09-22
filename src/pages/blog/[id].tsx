@@ -1,16 +1,9 @@
 import React from "react";
-import {
-  Flex,
-  Text,
-  Heading,
-  Image,
-  useColorMode,
-  Divider,
-  Link,
-  Button,
-  Box,
-  Spinner,
-} from "@chakra-ui/react";
+import { Flex, Text, Heading, Divider, Link, Box } from "@chakra-ui/layout";
+import { Image } from "@chakra-ui/image";
+import { useColorMode } from "@chakra-ui/color-mode";
+import { Button } from "@chakra-ui/button";
+import { Spinner } from "@chakra-ui/spinner";
 import { useRouter } from "next/router";
 import NextLink from "next/link";
 import readingTime from "reading-time";
@@ -20,28 +13,10 @@ import MinimalNav from "../../components/MinimalNav";
 import "@fontsource/iosevka";
 import Footer from "../../components/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import { faChevronUp } from "@fortawesome/free-solid-svg-icons/faChevronUp";
 import Markdown from "markdown-to-jsx";
-import { fetchData, getStrapiMedia } from "../../lib/api";
+import { fetchData } from "../../lib/api";
 import { convertImageUrls } from "../../lib/helpers";
-
-interface Post {
-  id: number;
-  title: string;
-  content: string;
-  created_at: any;
-  updated_at: any;
-  published_at: any;
-}
-
-interface PostWithReadingTime extends Post {
-  readTime: {
-    minutes: number;
-    text: string;
-    time: number;
-    words: number;
-  };
-}
 
 const Article = () => {
   const router = useRouter();
@@ -135,7 +110,12 @@ const Article = () => {
               {post?.title}
             </Heading>
             <Flex align="center" wrap="wrap">
-              <Image width="50px" src="/photo.png" borderRadius="50%" />
+              <Image
+                width="50px"
+                src="/photo.png"
+                borderRadius="50%"
+                alt="author"
+              />
               <Text ml="10px" fontWeight="bold" fontFamily="iosevka">
                 Rhys Morris
               </Text>
@@ -179,6 +159,7 @@ const Article = () => {
               borderRadius="5px"
             >
               {/* Empty string required to prevent dependency error */}
+              {/* eslint-disable-next-line */}
               <Markdown children={post?.content || ""} />
             </Box>
             <Link

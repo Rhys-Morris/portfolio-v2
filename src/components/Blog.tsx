@@ -1,9 +1,9 @@
 import React from "react";
-import { Flex, Heading } from "@chakra-ui/react";
+import { Flex, Heading } from "@chakra-ui/layout";
 import { fetchData } from "../lib/api";
 import { PostCard2 } from "./PostCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPen } from "@fortawesome/free-solid-svg-icons";
+import { faPen } from "@fortawesome/free-solid-svg-icons/faPen";
 import readingTime from "reading-time";
 
 const Blog = () => {
@@ -20,12 +20,9 @@ const Blog = () => {
         ...post,
         readTime: readingTime(post.content),
       }));
-      console.log(posts);
       setPosts(posts);
     });
   }, []);
-
-  console.log(posts);
 
   return (
     <Flex

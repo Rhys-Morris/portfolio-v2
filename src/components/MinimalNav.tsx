@@ -1,9 +1,11 @@
 import React from "react";
-import { Flex, Link, Text, useColorMode } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/layout";
+import { useColorMode } from "@chakra-ui/color-mode";
 import NextLink from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
-import APP_COLORS from "../style/colorTheme";
+import { faMoon } from "@fortawesome/free-solid-svg-icons/faMoon";
+import { faSun } from "@fortawesome/free-solid-svg-icons/faSun";
+import Logo from "./Logo";
 
 const MinimalNav = () => {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -19,28 +21,14 @@ const MinimalNav = () => {
       align="center"
       width="100%"
     >
-      <Link as={NextLink} href="/">
-        <Flex align="center" justify="center" cursor="pointer">
-          <Text fontSize="2xl" display="inline-block" fontWeight="bolder">
-            {"{"}
-          </Text>
-          <Text
-            display="inline-block"
-            fontSize="2xl"
-            color={APP_COLORS.fontHighlight}
-            p="5px"
-            fontWeight="normal"
-          >
-            RM
-          </Text>
-          <Text fontSize="2xl" display="inline-block" fontWeight="bolder">
-            {"}"}
-          </Text>
-        </Flex>
-      </Link>
+      <NextLink href="/" passHref>
+        <a>
+          <Logo />
+        </a>
+      </NextLink>
       <FontAwesomeIcon
         onClick={toggleColorMode}
-        style={{ cursor: "pointer" }}
+        style={{ cursor: "pointer", width: "20px" }}
         icon={colorMode === "light" ? faMoon : faSun}
         size="2x"
       />

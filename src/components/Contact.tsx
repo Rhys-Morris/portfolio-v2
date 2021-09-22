@@ -1,26 +1,23 @@
 import React from "react";
+import { useColorMode } from "@chakra-ui/color-mode";
+import { Flex, Heading, Center, Text } from "@chakra-ui/layout";
+import { Button } from "@chakra-ui/button";
+import { FormControl, FormLabel } from "@chakra-ui/form-control";
+import { Input } from "@chakra-ui/input";
 import {
-  Heading,
-  Flex,
-  useColorMode,
-  FormControl,
-  FormLabel,
-  Input,
-  Center,
-  Button,
-  Text,
   Modal,
   ModalContent,
   ModalBody,
   ModalCloseButton,
-  useDisclosure,
-} from "@chakra-ui/react";
-import APP_COLORS from "../style/colorTheme";
+} from "@chakra-ui/modal";
+import { useDisclosure } from "@chakra-ui/hooks";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTwitter, faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import { faMailBulk } from "@fortawesome/free-solid-svg-icons";
+import { faTwitter } from "@fortawesome/free-brands-svg-icons/faTwitter";
+import { faLinkedin } from "@fortawesome/free-brands-svg-icons/faLinkedin";
+import { faMailBulk } from "@fortawesome/free-solid-svg-icons/faMailBulk";
 import { validateForm } from "../lib/helpers";
 import { useForm } from "@formspree/react";
+import APP_COLORS from "../style/colorTheme";
 
 const Contact = () => {
   const [name, setName] = React.useState("");
@@ -70,8 +67,8 @@ const Contact = () => {
             </Heading>
           </Flex>
           <Text textAlign="center" mb="20px">
-            I'm always open to work opportunities! Reach out and we can have a
-            chat.
+            I&apos;m always open to work opportunities! Reach out and we can
+            have a chat.
           </Text>
           <form
             method="POST"
@@ -154,12 +151,13 @@ const Contact = () => {
             </Button>
           </form>
           <Text textAlign="center" mt="50px" mb="20px">
-            I'm also reachable on social media, if that's your preferred method
-            of communication:
+            I&apos;m also reachable on social media, if that&apos;s your
+            preferred method of communication:
           </Text>
           <Flex align="center" justify="center">
             <a
               target="_blank"
+              rel="noreferrer"
               href="https://www.linkedin.com/in/rhys-morris-37ba241b9/"
             >
               <Button m="0 5px">
@@ -170,7 +168,11 @@ const Contact = () => {
                 LinkedIn
               </Button>
             </a>
-            <a target="_blank" href="https://twitter.com/RhysMorris91">
+            <a
+              target="_blank"
+              href="https://twitter.com/RhysMorris91"
+              rel="noreferrer"
+            >
               <Button m="0 5px">
                 <FontAwesomeIcon
                   icon={faTwitter}

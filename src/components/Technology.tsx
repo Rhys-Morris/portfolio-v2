@@ -1,41 +1,31 @@
 import React from "react";
-import {
-  Flex,
-  Heading,
-  Button,
-  Text,
-  useColorMode,
-  useMediaQuery,
-  Select,
-} from "@chakra-ui/react";
+import { Flex, Heading, Text } from "@chakra-ui/layout";
+import { Button } from "@chakra-ui/button";
+import { Select } from "@chakra-ui/select";
+import { useColorMode } from "@chakra-ui/color-mode";
+import { useMediaQuery } from "@chakra-ui/media-query";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faDesktop,
-  faServer,
-  faToolbox,
-} from "@fortawesome/free-solid-svg-icons";
-import APP_COLORS from "../style/colorTheme";
-import {
-  DiJsBadge,
-  DiReact,
-  DiHtml5,
-  DiCss3,
-  DiSass,
-  DiRuby,
-  DiPostgresql,
-  DiNpm,
-  DiGit,
-} from "react-icons/di";
-import {
-  SiRails,
-  SiAmazonaws,
-  SiNextDotJs,
-  SiNetlify,
-  SiHeroku,
-  SiTypescript,
-  SiStrapi,
-} from "react-icons/si";
+import { faDesktop } from "@fortawesome/free-solid-svg-icons/faDesktop";
+import { faServer } from "@fortawesome/free-solid-svg-icons/faServer";
+import { faToolbox } from "@fortawesome/free-solid-svg-icons/faToolbox";
+import { DiJsBadge } from "@react-icons/all-files/di/DiJsBadge";
+import { DiHtml5 } from "@react-icons/all-files/di/DiHtml5";
+import { DiReact } from "@react-icons/all-files/di/DiReact";
+import { DiCss3 } from "@react-icons/all-files/di/DiCss3";
+import { DiSass } from "@react-icons/all-files/di/DiSass";
+import { DiRuby } from "@react-icons/all-files/di/DiRuby";
+import { DiPostgresql } from "@react-icons/all-files/di/DiPostgresql";
+import { DiNpm } from "@react-icons/all-files/di/DiNpm";
+import { DiGit } from "@react-icons/all-files/di/DiGit";
+import { SiRails } from "@react-icons/all-files/si/SiRails";
+import { SiAmazonaws } from "@react-icons/all-files/si/SiAmazonaws";
+import { SiNextDotJs } from "@react-icons/all-files/si/SiNextDotJs";
+import { SiNetlify } from "@react-icons/all-files/si/SiNetlify";
+import { SiHeroku } from "@react-icons/all-files/si/SiHeroku";
+import { SiTypescript } from "@react-icons/all-files/si/SiTypescript";
+import { SiStrapi } from "@react-icons/all-files/si/SiStrapi";
 import { motion } from "framer-motion";
+import APP_COLORS from "../style/colorTheme";
 
 const MotionFlex = motion(Flex);
 

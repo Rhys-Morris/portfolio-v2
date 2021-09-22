@@ -1,10 +1,12 @@
 import React from "react";
-import { Flex, Text, Button, useColorMode, Link, Box } from "@chakra-ui/react";
+import { Flex, Text, Link, Box } from "@chakra-ui/layout";
+import { useColorMode } from "@chakra-ui/color-mode";
+import { Button } from "@chakra-ui/button";
 import APP_COLORS from "../style/colorTheme";
 import "@fontsource/iosevka";
 import NextLink from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons/faArrowRight";
 import UnderlineText from "./styled/UnderlineText";
 
 export const PostCard1 = ({ post }) => {
@@ -58,14 +60,15 @@ export const PostCard1 = ({ post }) => {
               </Text>
             </Link>
             <Text>{summary}</Text>
+            <Button alignSelf="start" mt="10px">
+              Read More{" "}
+              <FontAwesomeIcon
+                icon={faArrowRight}
+                style={{ marginLeft: "10px" }}
+              />
+            </Button>
             <Link as={NextLink} href={`/blog/${id}`}>
-              <Button alignSelf="start" mt="10px">
-                Read More{" "}
-                <FontAwesomeIcon
-                  icon={faArrowRight}
-                  style={{ marginLeft: "10px" }}
-                />
-              </Button>
+              <a>More</a>
             </Link>
           </Flex>
         </Flex>

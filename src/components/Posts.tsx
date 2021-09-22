@@ -1,15 +1,9 @@
-import {
-  Flex,
-  Heading,
-  Text,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  Spinner,
-} from "@chakra-ui/react";
+import { Flex, Heading, Text } from "@chakra-ui/layout";
+import { Input, InputGroup, InputLeftElement } from "@chakra-ui/input";
+import { Spinner } from "@chakra-ui/spinner";
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faSearch } from "@fortawesome/free-solid-svg-icons/faSearch";
 import { fetchData } from "../lib/api";
 import readingTime from "reading-time";
 import { PostCard1 } from "./PostCard";
@@ -73,10 +67,9 @@ const Posts = () => {
         A place for me to pass on experience, learnings and my own thoughts.
       </Text>
       <InputGroup mt="10px" mb="20px">
-        <InputLeftElement
-          pointerEvents="none"
-          children={<FontAwesomeIcon icon={faSearch} />}
-        />
+        <InputLeftElement pointerEvents="none">
+          <FontAwesomeIcon icon={faSearch} />
+        </InputLeftElement>
         <Input
           placeholder="Search for a post"
           maxWidth="500px"

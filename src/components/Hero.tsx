@@ -1,13 +1,12 @@
 import React from "react";
-import { Heading, Center, Flex, useColorMode, Divider } from "@chakra-ui/react";
+import { Heading, Center, Flex, Divider } from "@chakra-ui/layout";
+import { useColorMode } from "@chakra-ui/color-mode";
 import DrifterStars from "@devil7softwares/react-drifter-stars";
 import APP_COLORS from "../style/colorTheme";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faLinkedin,
-  faGithubSquare,
-  faTwitterSquare,
-} from "@fortawesome/free-brands-svg-icons";
+import { faLinkedin } from "@fortawesome/free-brands-svg-icons/faLinkedin";
+import { faGithubSquare } from "@fortawesome/free-brands-svg-icons/faGithubSquare";
+import { faTwitterSquare } from "@fortawesome/free-brands-svg-icons/faTwitterSquare";
 import { debounce } from "../lib/helpers";
 
 const sectionStyle = {
@@ -33,7 +32,6 @@ const Hero = () => {
   };
 
   const onScroll = () => {
-    console.log("scroll");
     if (window.scrollY > window.innerHeight / 2) {
       setDimCanvas(true);
     }
@@ -97,6 +95,7 @@ const Hero = () => {
             <a
               href="https://au.linkedin.com/in/rhys-morris-37ba241b9"
               target="_blank"
+              rel="noreferrer"
             >
               <FontAwesomeIcon
                 icon={faLinkedin}
@@ -104,14 +103,22 @@ const Hero = () => {
                 style={{ margin: "0 5px" }}
               />
             </a>
-            <a href="https://twitter.com/rhysmorris91" target="_blank">
+            <a
+              href="https://twitter.com/rhysmorris91"
+              target="_blank"
+              rel="noreferrer"
+            >
               <FontAwesomeIcon
                 icon={faTwitterSquare}
                 size="2x"
                 style={{ margin: "0 5px" }}
               />
             </a>
-            <a href="https://github.com/Rhys-Morris" target="_blank">
+            <a
+              href="https://github.com/Rhys-Morris"
+              target="_blank"
+              rel="noreferrer"
+            >
               <FontAwesomeIcon
                 icon={faGithubSquare}
                 size="2x"

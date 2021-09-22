@@ -1,12 +1,7 @@
 import React from "react";
-import {
-  Flex,
-  Heading,
-  Image,
-  Text,
-  Link,
-  useMediaQuery,
-} from "@chakra-ui/react";
+import { Flex, Heading, Text, Link } from "@chakra-ui/layout";
+import { Image } from "@chakra-ui/image";
+import { useMediaQuery } from "@chakra-ui/media-query";
 import UnderlineText from "./styled/UnderlineText";
 
 const About = () => {
@@ -30,6 +25,7 @@ const About = () => {
             height="200px"
             zIndex="0"
             borderRadius="100%"
+            alt="photo"
             float={breakpoint1000 ? "none" : "left"}
             margin={breakpoint1000 ? "20px auto" : "10px 30px 0 0"}
             style={{ shapeOutside: "circle(50%)" }}
@@ -39,15 +35,16 @@ const About = () => {
             textAlign="justify"
             maxWidth={breakpoint1000 ? "500px" : null}
           >
-            G'day! I'm Rhys, a software developer based in Melbourne, Australia.
-            I've recently started my first position as a developer after
-            completing an intensive coding bootcamp through Coder Academy. I
-            discovered a passion for programming whilst employed in my first
-            career as a small animal veterinarian. I'm passionate about creating
-            interactive, responsive and accessible products. I aim to build
-            applications and websites that provide a great user experience,
-            whilst still being performant. In my spare time I restore mid
-            century furniture - you can find my instagram with some of my work{" "}
+            G&apos;day! I&apos;m Rhys, a software developer based in Melbourne,
+            Australia. I&apos;ve recently started my first position as a
+            developer after completing an intensive coding bootcamp through
+            Coder Academy. I discovered a passion for programming whilst
+            employed in my first career as a small animal veterinarian. I&apos;m
+            passionate about creating interactive, responsive and accessible
+            products. I aim to build applications and websites that provide a
+            great user experience, whilst still being performant. In my spare
+            time I restore mid century furniture - you can find my instagram
+            with some of my work{" "}
             <Link
               href="https://www.instagram.com/morrismodern/?hl=en"
               target="_blank"
@@ -55,9 +52,9 @@ const About = () => {
             >
               <UnderlineText>here</UnderlineText>
             </Link>
-            . I love the design aesthetic of the mid century period, and there's
-            something immeasurably satisfying about working with wood, and
-            bringing something old back to life.
+            . I love the design aesthetic of the mid century period, and
+            there&apos;s something immeasurably satisfying about working with
+            wood, and bringing something old back to life.
           </Text>
         </div>
       </Flex>

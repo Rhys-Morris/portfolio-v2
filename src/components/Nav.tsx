@@ -1,23 +1,19 @@
 import React from "react";
-import {
-  Flex,
-  Link,
-  Text,
-  useColorMode,
-  useMediaQuery,
-} from "@chakra-ui/react";
+import { Flex, Link, Text } from "@chakra-ui/layout";
+import { useColorMode } from "@chakra-ui/color-mode";
+import { useMediaQuery } from "@chakra-ui/media-query";
 import APP_COLORS from "../style/colorTheme";
 import NextLink from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
+import { faMoon } from "@fortawesome/free-solid-svg-icons/faMoon";
+import { faSun } from "@fortawesome/free-solid-svg-icons/faSun";
 import { HamburgerBox, HamburgerLine } from "./styled/HamburgerElements";
+import Logo from "./Logo";
 
 const Hamburger = () => {
   const [open, setOpen] = React.useState(false);
-  const {
-    colorMode,
-    toggleColorMode,
-  }: { colorMode: colorMode; toggleColorMode: () => void } = useColorMode();
+  const { colorMode }: { colorMode: colorMode } = useColorMode();
+
   const showMenu = () => {
     const menu = document.getElementById("menu");
     const hamburger = document.getElementById("hamburger");
@@ -225,25 +221,11 @@ const Nav = () => {
             : "rgba(0, 0, 0, .9)"
         }
       >
-        <Link as={NextLink} href="/">
-          <Flex align="center" justify="center" cursor="pointer">
-            <Text display="inline-block" fontWeight="bolder" fontSize="2xl">
-              {"{"}
-            </Text>
-            <Text
-              display="inline-block"
-              color={APP_COLORS.fontHighlight}
-              p="0 5px"
-              fontWeight="normal"
-              fontSize="2xl"
-            >
-              RM
-            </Text>
-            <Text display="inline-block" fontWeight="bolder" fontSize="2xl">
-              {"}"}
-            </Text>
-          </Flex>
-        </Link>
+        <NextLink href="/">
+          <a>
+            <Logo />
+          </a>
+        </NextLink>
         {breakpoint600 && <Hamburger />}
         {!breakpoint600 && (
           <ul style={{ listStyle: "none", display: "flex" }}>

@@ -1,16 +1,9 @@
 import React from "react";
-import {
-  Flex,
-  Heading,
-  Box,
-  Text,
-  Badge,
-  useColorMode,
-  useMediaQuery,
-} from "@chakra-ui/react";
+import { Flex, Heading, Box, Text, Badge } from "@chakra-ui/layout";
+import { useColorMode } from "@chakra-ui/color-mode";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
+import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub";
+import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons/faExternalLinkAlt";
 import { motion } from "framer-motion";
 
 const MotionFlex = motion(Flex);
@@ -48,19 +41,20 @@ const ProjectCard = ({ project }) => {
           {title}
         </Heading>
         <Box>
-          <a href={githubLink} target="_blank">
+          <a href={githubLink} target="_blank" rel="noreferrer">
             <FontAwesomeIcon icon={faGithub} style={{ marginRight: "5px" }} />
           </a>
           {liveLink && (
-            <a href={liveLink} target="_blank">
+            <a href={liveLink} target="_blank" rel="noreferrer">
               <FontAwesomeIcon icon={faExternalLinkAlt} />
             </a>
           )}
         </Box>
       </Flex>
       <Flex flexWrap="wrap">
-        {technologies.map((tech) => (
+        {technologies.map((tech, index) => (
           <Badge
+            key={index}
             m="3px"
             p="4px 8px"
             color={colorMode === "light" ? "black" : "white"}

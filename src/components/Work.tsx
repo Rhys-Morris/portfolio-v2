@@ -1,16 +1,15 @@
 import React from "react";
-import { Flex, Heading, Button, Text, Link } from "@chakra-ui/react";
+import { Flex, Text, Heading } from "@chakra-ui/layout";
+import { Button } from "@chakra-ui/button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faBriefcase,
-  faChevronDown,
-  faChevronUp,
-  faPaperclip,
-} from "@fortawesome/free-solid-svg-icons";
+import { faBriefcase } from "@fortawesome/free-solid-svg-icons/faBriefcase";
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons/faChevronDown";
+import { faChevronUp } from "@fortawesome/free-solid-svg-icons/faChevronUp";
 import ProjectCard from "./ProjectCard";
 import Technology from "./Technology";
 import { projectData } from "../lib/projectData";
 import UnderlineText from "./styled/UnderlineText";
+import NextLink from "next/link";
 
 const Work = () => {
   const [projectCount, setProjectCount] = React.useState(4);
@@ -79,15 +78,12 @@ const Work = () => {
             </Button>
           )}
         </Flex>
+        {/* Download resume */}
         <Text zIndex="1" mt="30px" mb="20px">
           Want to know more? Download my{" "}
-          <Link
-            target="_blank"
-            href="/resume"
-            _hover={{ textDecoration: "none" }}
-          >
-            <UnderlineText>resume</UnderlineText>.
-          </Link>
+          <NextLink href="/resume">
+            <a>Resume</a>
+          </NextLink>
         </Text>
       </Flex>
     </section>
