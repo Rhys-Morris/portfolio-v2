@@ -2,14 +2,9 @@ import React from "react";
 import { Flex, useColorMode } from "@chakra-ui/react";
 import Footer from "../../components/Footer";
 import Posts from "../../components/Posts";
-import readingTime from "reading-time";
-import { PostCard1 } from "../../components/PostCard";
 import DrifterStars from "@devil7softwares/react-drifter-stars";
 import APP_COLORS from "../../style/colorTheme";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import MinimalNav from "../../components/MinimalNav";
-import { fetchData } from "../../lib/api";
 
 const BlogIndex = () => {
   const {

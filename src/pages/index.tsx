@@ -1,5 +1,6 @@
 import React from "react";
 import { useColorMode } from "@chakra-ui/react";
+import Nav from "../components/Nav";
 import Hero from "../components/Hero";
 import Work from "../components/Work";
 import About from "../components/About";
@@ -14,6 +15,7 @@ const Home = () => {
   React.useEffect(() => {
     document.title = "Rhys Morris - Software Developer";
   });
+
   return (
     <main
       style={{
@@ -23,7 +25,9 @@ const Home = () => {
             : APP_COLORS.primaryDark,
         scrollBehavior: "smooth",
       }}
+      id="home"
     >
+      <Nav />
       <Hero />
       <About />
       <Work />

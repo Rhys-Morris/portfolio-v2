@@ -2,7 +2,6 @@ import React from "react";
 import { Heading, Center, Flex, useColorMode, Divider } from "@chakra-ui/react";
 import DrifterStars from "@devil7softwares/react-drifter-stars";
 import APP_COLORS from "../style/colorTheme";
-import Nav from "./Nav";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLinkedin,
@@ -63,7 +62,6 @@ const Hero = () => {
         }
         motion={{ ratio: 0.03 }}
       />
-      <Nav />
       <Center height="100%">
         <Flex
           direction="column"

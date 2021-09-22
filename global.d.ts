@@ -24,7 +24,7 @@ type colorMode = "light" | "dark";
 
 interface Background {
   background: string;
-  position: "absolute" | "fixed";
+  position: "absolute" | "fixed" | "relative";
   display: string;
   inset: number;
   width: string;

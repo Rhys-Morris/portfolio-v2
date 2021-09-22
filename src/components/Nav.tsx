@@ -1,18 +1,201 @@
 import React from "react";
-import { Flex, Link, Text, useColorMode } from "@chakra-ui/react";
+import {
+  Flex,
+  Link,
+  Text,
+  useColorMode,
+  useMediaQuery,
+} from "@chakra-ui/react";
 import APP_COLORS from "../style/colorTheme";
 import NextLink from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
+import { HamburgerBox, HamburgerLine } from "./styled/HamburgerElements";
+
+const Hamburger = () => {
+  const [open, setOpen] = React.useState(false);
+  const {
+    colorMode,
+    toggleColorMode,
+  }: { colorMode: colorMode; toggleColorMode: () => void } = useColorMode();
+  const showMenu = () => {
+    const menu = document.getElementById("menu");
+    const hamburger = document.getElementById("hamburger");
+    const line1 = document.getElementById("line-1");
+    const line2 = document.getElementById("line-2");
+    const line3 = document.getElementById("line-3");
+
+    if (open) {
+      line2.style.opacity = "1";
+      line1.style.transform = "rotate(0deg)";
+      line3.style.transform = "rotate(0deg)";
+      menu.style.right = "-190px";
+      hamburger.style.right = "0";
+    } else {
+      line2.style.opacity = "0";
+      line1.style.transform = "rotate(42deg)";
+      line3.style.transform = "rotate(-42deg)";
+      menu.style.right = "0";
+      hamburger.style.right = "180px";
+    }
+    setOpen(!open);
+  };
+
+  return (
+    <Flex flex="1" justify="flex-end">
+      <HamburgerBox id="hamburger" onClick={showMenu}>
+        <HamburgerLine
+          id="line-1"
+          style={{
+            transformOrigin: "left center",
+            background:
+              colorMode === "light"
+                ? APP_COLORS.primaryDark
+                : APP_COLORS.primaryLight,
+          }}
+        />
+        <HamburgerLine
+          id="line-2"
+          style={{
+            background:
+              colorMode === "light"
+                ? APP_COLORS.primaryDark
+                : APP_COLORS.primaryLight,
+          }}
+        />
+        <HamburgerLine
+          id="line-3"
+          style={{
+            transformOrigin: "left center",
+            background:
+              colorMode === "light"
+                ? APP_COLORS.primaryDark
+                : APP_COLORS.primaryLight,
+          }}
+        />
+      </HamburgerBox>
+      <nav>
+        <Flex
+          id="menu"
+          position="fixed"
+          direction="column"
+          top="0"
+          right="-190px"
+          bg={
+            colorMode === "light"
+              ? APP_COLORS.secondaryDark
+              : APP_COLORS.secondaryLight
+          }
+          transition=".5s all"
+          height="100%"
+          width="190px"
+          p="15px"
+          pl="30px"
+        >
+          <ul style={{ listStyle: "none" }}>
+            <li style={{ padding: "5px" }}>
+              <Link
+                href="#home"
+                mr="30px"
+                fontSize="large"
+                _hover={{
+                  textDecoration: "none",
+                  color:
+                    colorMode === "light"
+                      ? APP_COLORS.dimCanvasLight
+                      : APP_COLORS.dimCanvasDark,
+                }}
+              >
+                Home
+              </Link>
+            </li>
+            <NavList />
+          </ul>
+        </Flex>
+      </nav>
+    </Flex>
+  );
+};
+
+const NavList = () => {
+  const {
+    colorMode,
+    toggleColorMode,
+  }: { colorMode: colorMode; toggleColorMode: () => void } = useColorMode();
+  const [breakpoint600] = useMediaQuery("(max-width: 600px)");
+  return (
+    <>
+      <li style={{ padding: "5px" }}>
+        <Link
+          href="#work"
+          mr="30px"
+          fontSize="large"
+          _hover={{
+            textDecoration: "none",
+            color:
+              colorMode === "light"
+                ? APP_COLORS.dimCanvasLight
+                : APP_COLORS.dimCanvasDark,
+          }}
+        >
+          Work
+        </Link>
+      </li>
+      <li style={{ padding: "5px" }}>
+        <Link
+          href="#contact"
+          mr="30px"
+          fontSize="large"
+          _hover={{
+            textDecoration: "none",
+            color:
+              colorMode === "light"
+                ? APP_COLORS.dimCanvasLight
+                : APP_COLORS.dimCanvasDark,
+          }}
+        >
+          Contact
+        </Link>
+      </li>
+      <li style={{ padding: "5px" }}>
+        <Link
+          href="/blog"
+          fontSize="large"
+          _hover={{
+            textDecoration: "none",
+            color:
+              colorMode === "light"
+                ? APP_COLORS.dimCanvasLight
+                : APP_COLORS.dimCanvasDark,
+          }}
+        >
+          Blog
+        </Link>
+      </li>
+      <li style={{ padding: "5px" }}>
+        <FontAwesomeIcon
+          onClick={toggleColorMode}
+          size="2x"
+          style={{
+            cursor: "pointer",
+            marginLeft: !breakpoint600 ? "30px" : "0px",
+          }}
+          icon={colorMode === "light" ? faMoon : faSun}
+        />
+      </li>
+    </>
+  );
+};
 
 const Nav = () => {
   const {
     colorMode,
     toggleColorMode,
   }: {
-    colorMode: "light" | "dark";
+    colorMode: colorMode;
     toggleColorMode: () => void;
   } = useColorMode();
+  const [breakpoint600] = useMediaQuery("(max-width: 600px)");
 
   return (
     <nav
@@ -61,63 +244,12 @@ const Nav = () => {
             </Text>
           </Flex>
         </Link>
-        <ul style={{ listStyle: "none", display: "flex" }}>
-          <li>
-            <Link
-              href="#work"
-              mr="30px"
-              fontSize="large"
-              _hover={{
-                textDecoration: "none",
-                color:
-                  colorMode === "light"
-                    ? APP_COLORS.dimCanvasLight
-                    : APP_COLORS.dimCanvasDark,
-              }}
-            >
-              Work
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="#contact"
-              mr="30px"
-              fontSize="large"
-              _hover={{
-                textDecoration: "none",
-                color:
-                  colorMode === "light"
-                    ? APP_COLORS.dimCanvasLight
-                    : APP_COLORS.dimCanvasDark,
-              }}
-            >
-              Contact
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/blog"
-              fontSize="large"
-              _hover={{
-                textDecoration: "none",
-                color:
-                  colorMode === "light"
-                    ? APP_COLORS.dimCanvasLight
-                    : APP_COLORS.dimCanvasDark,
-              }}
-            >
-              Blog
-            </Link>
-          </li>
-          <li>
-            <FontAwesomeIcon
-              onClick={toggleColorMode}
-              size="2x"
-              style={{ cursor: "pointer", marginLeft: "30px" }}
-              icon={colorMode === "light" ? faMoon : faSun}
-            />
-          </li>
-        </ul>
+        {breakpoint600 && <Hamburger />}
+        {!breakpoint600 && (
+          <ul style={{ listStyle: "none", display: "flex" }}>
+            <NavList />
+          </ul>
+        )}
       </Flex>
     </nav>
   );
