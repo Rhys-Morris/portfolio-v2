@@ -8,7 +8,7 @@ const projectData: {
   {
     title: "PcPartsPal",
     description:
-      "A marketplace application where user's can buy and sell second hand computer parts.",
+      "A marketplace application where users can buy and sell second hand computer parts.",
     imageUrl: "/pcpartspal.png",
     resourceUrls: [
       "https://github.com/Rhys-Morris/pcpartspal",
@@ -45,8 +45,7 @@ const projectData: {
   },
   {
     title: "HackerNews",
-    description:
-      "Hacker News clone with modern UI including light and dark modes.",
+    description: "Hacker News clone with modern UI.",
     imageUrl: "/hacker-news.png",
     resourceUrls: [
       "https://github.com/Rhys-Morris/hacker-news-clone",
@@ -57,32 +56,49 @@ const projectData: {
   {
     title: "Draughts",
     description:
-      "A command line application to play the popular board game draughts with two players. Features file based leaderboard storage.",
+      "Command line application to play the popular board game draughts between two players. File based leaderboard storage.",
     imageUrl: "/draughts.png",
     resourceUrls: ["https://github.com/Rhys-Morris/terminal-draughts", false],
     technologies: ["Ruby"],
   },
   {
     title: "Weatherly",
-    description:
-      "An application to look up local weather forecasts in cities around the world",
+    description: "Look up local weather forecasts in cities around the world.",
     imageUrl: "/weatherly.png",
     resourceUrls: [
       "https://github.com/Rhys-Morris/weatherly",
       "https://weatherlyapplication.netlify.app/",
     ],
-    technologies: ["JavaScript", "OpenWeather API"],
+    technologies: ["JavaScript", "SASS"],
   },
   {
     title: "PokeMemory",
-    description:
-      "A memory card game built with the Poke API featuring a classic Pokemon colour scheme",
+    description: "A memory card game built with the Pokemon API.",
     imageUrl: "/pokememory.png",
     resourceUrls: [
       "https://github.com/Rhys-Morris/memory-cards",
       "https://pokememory-cards.netlify.app/",
     ],
-    technologies: ["React", "Poke API"],
+    technologies: ["React"],
+  },
+  {
+    title: "Portfolio & Blog",
+    description:
+      "The site you're on currently, my little corner of the internet.",
+    imageUrl: "/portfolio.png",
+    resourceUrls: ["https://github.com/Rhys-Morris/portfolio-v2", false],
+    technologies: ["NextJS", "React", "TypeScript", "Strapi", "ChakraUI"],
+  },
+  {
+    title: "Old Portfolio",
+    description:
+      "My first portfolio site. Built with vanilla JavaScript, HTML and SASS.",
+    imageUrl: "/old-portfolio.png",
+    resourceUrls: [
+      "https://github.com/Rhys-Morris/portfolio-single-page",
+      "https://rhysmorrisdeveloper.netlify.app/",
+    ],
+    technologies: ["JavaScript", "SASS"],
   },
 ];
 

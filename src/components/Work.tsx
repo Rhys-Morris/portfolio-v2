@@ -28,7 +28,7 @@ const Work = () => {
           </Heading>
         </Flex>
         <Technology />
-        <Heading as="h3" size="lg" mb="20px" zIndex="0" marginTop="50px">
+        <Heading as="h3" size="lg" mb="20px" zIndex="0" marginTop="75px">
           Projects
         </Heading>
         <Flex

@@ -89,7 +89,7 @@ const Hamburger = () => {
           pl="30px"
         >
           <ul style={{ listStyle: "none" }}>
-            <li style={{ padding: "5px" }}>
+            <li style={{ padding: "10px 0" }}>
               <Link
                 href="#home"
                 mr="30px"
@@ -121,7 +121,7 @@ const NavList = () => {
   const [breakpoint600] = useMediaQuery("(max-width: 600px)");
   return (
     <>
-      <li style={{ padding: "5px" }}>
+      <li style={{ padding: "10px 0" }}>
         <Link
           href="#work"
           mr="30px"
@@ -137,7 +137,7 @@ const NavList = () => {
           Work
         </Link>
       </li>
-      <li style={{ padding: "5px" }}>
+      <li style={{ padding: "10px 0" }}>
         <Link
           href="#contact"
           mr="30px"
@@ -153,7 +153,7 @@ const NavList = () => {
           Contact
         </Link>
       </li>
-      <li style={{ padding: "5px" }}>
+      <li style={{ padding: "10px 0" }}>
         <Link
           href="/blog"
           fontSize="large"
@@ -168,7 +168,7 @@ const NavList = () => {
           Blog
         </Link>
       </li>
-      <li style={{ padding: "5px" }}>
+      <li style={{ padding: "10px 0" }}>
         <FontAwesomeIcon
           onClick={toggleColorMode}
           style={{

@@ -1,5 +1,6 @@
 import React from "react";
 import { Flex, Heading, Box, Text, Badge } from "@chakra-ui/layout";
+import { Button } from "@chakra-ui/button";
 import { useColorMode } from "@chakra-ui/color-mode";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub";
@@ -42,16 +43,24 @@ const ProjectCard = ({ project }) => {
         </Heading>
         <Box>
           <a href={githubLink} target="_blank" rel="noreferrer">
-            <FontAwesomeIcon icon={faGithub} style={{ marginRight: "5px" }} />
+            <FontAwesomeIcon
+              icon={faGithub}
+              size="2x"
+              style={{ marginRight: "5px", width: "20px" }}
+            />
           </a>
           {liveLink && (
             <a href={liveLink} target="_blank" rel="noreferrer">
-              <FontAwesomeIcon icon={faExternalLinkAlt} />
+              <FontAwesomeIcon
+                icon={faExternalLinkAlt}
+                style={{ width: "20px" }}
+                size="2x"
+              />
             </a>
           )}
         </Box>
       </Flex>
-      <Flex flexWrap="wrap">
+      <Flex flexWrap="wrap" margin="8px 0">
         {technologies.map((tech, index) => (
           <Badge
             key={index}
