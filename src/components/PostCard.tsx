@@ -9,6 +9,27 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons/faArrowRight";
 import UnderlineText from "./styled/UnderlineText";
 
+const ReadMoreLink = ({ id, colorMode }) => (
+  <Link as={NextLink} href={`/blog/${id}`}>
+    <a>
+      <UnderlineText
+        color={
+          colorMode === "light"
+            ? APP_COLORS.secondaryLight
+            : APP_COLORS.secondaryDark
+        }
+        style={{ cursor: "pointer" }}
+      >
+        Read more
+        <FontAwesomeIcon
+          icon={faArrowRight}
+          style={{ marginLeft: "10px", width: "20px" }}
+        />
+      </UnderlineText>
+    </a>
+  </Link>
+);
+
 export const PostCard1 = ({ post }) => {
   const { colorMode }: { colorMode: colorMode } = useColorMode();
   const {
@@ -59,17 +80,8 @@ export const PostCard1 = ({ post }) => {
                 {title}
               </Text>
             </Link>
-            <Text>{summary}</Text>
-            <Button alignSelf="start" mt="10px">
-              Read More{" "}
-              <FontAwesomeIcon
-                icon={faArrowRight}
-                style={{ marginLeft: "10px", width: "20px" }}
-              />
-            </Button>
-            <Link as={NextLink} href={`/blog/${id}`}>
-              <a>More</a>
-            </Link>
+            <Text mb="20px">{summary}</Text>
+            <ReadMoreLink id={id} colorMode={colorMode} />
           </Flex>
         </Flex>
       </Flex>
@@ -133,24 +145,7 @@ export const PostCard2 = ({ post }) => {
         <Text mb="10px" textAlign="justify">
           {summary}
         </Text>
-        <Link as={NextLink} href={`/blog/${id}`}>
-          <a>
-            <UnderlineText
-              color={
-                colorMode === "light"
-                  ? APP_COLORS.secondaryLight
-                  : APP_COLORS.secondaryDark
-              }
-              style={{ cursor: "pointer" }}
-            >
-              Read more
-              <FontAwesomeIcon
-                icon={faArrowRight}
-                style={{ marginLeft: "10px", width: "20px" }}
-              />
-            </UnderlineText>
-          </a>
-        </Link>
+        <ReadMoreLink id={id} colorMode={colorMode} />
       </Flex>
     </Flex>
   );

@@ -171,11 +171,12 @@ const NavList = () => {
       <li style={{ padding: "5px" }}>
         <FontAwesomeIcon
           onClick={toggleColorMode}
-          size="2x"
           style={{
             cursor: "pointer",
             marginLeft: !breakpoint600 ? "30px" : "0px",
+            width: "30px",
           }}
+          size="2x"
           icon={colorMode === "light" ? faMoon : faSun}
         />
       </li>

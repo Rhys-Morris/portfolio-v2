@@ -43,7 +43,7 @@ const Posts = ({ posts, fetchError }) => {
       </Text>
       <InputGroup mt="10px" mb="20px">
         <InputLeftElement pointerEvents="none">
-          <FontAwesomeIcon icon={faSearch} />
+          <FontAwesomeIcon icon={faSearch} style={{ width: "15px" }} />
         </InputLeftElement>
         <Input
           placeholder="Search for a post"

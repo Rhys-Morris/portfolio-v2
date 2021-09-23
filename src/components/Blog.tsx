@@ -38,8 +38,8 @@ const Blog = () => {
       <Flex align="center" mb="30px">
         <FontAwesomeIcon
           icon={faPen}
+          style={{ zIndex: 0, marginRight: "10px", width: "35px" }}
           size="2x"
-          style={{ zIndex: 0, marginRight: "10px" }}
         />
         <Heading as="h2" size="2xl" zIndex="1">
           Latest Blog Posts

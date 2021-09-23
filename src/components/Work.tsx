@@ -1,5 +1,5 @@
 import React from "react";
-import { Flex, Text, Heading } from "@chakra-ui/layout";
+import { Flex, Text, Heading, Link } from "@chakra-ui/layout";
 import { Button } from "@chakra-ui/button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBriefcase } from "@fortawesome/free-solid-svg-icons/faBriefcase";
@@ -81,9 +81,9 @@ const Work = () => {
         {/* Download resume */}
         <Text zIndex="1" mt="30px" mb="20px">
           Want to know more? Download my{" "}
-          <NextLink href="/resume">
-            <a>Resume</a>
-          </NextLink>
+          <Link href="/resume.pdf" download>
+            <UnderlineText>resume</UnderlineText>
+          </Link>
         </Text>
       </Flex>
     </section>

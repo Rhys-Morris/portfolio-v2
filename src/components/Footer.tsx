@@ -22,7 +22,7 @@ const Footer = () => {
           <FontAwesomeIcon
             icon={faHeart}
             color={APP_COLORS.fontHighlight}
-            style={{ margin: "0 3px" }}
+            style={{ margin: "0 3px", width: "10px" }}
           />
           <span>in Melbourne, Australia</span>
         </Flex>

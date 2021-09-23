@@ -58,9 +58,9 @@ const Contact = () => {
         <Flex direction="column" maxWidth="750px" width="80vw" zIndex="2">
           <Flex align="center" justify="center" mb="20px">
             <FontAwesomeIcon
-              icon={faMailBulk}
               size="2x"
-              style={{ marginRight: "10px" }}
+              icon={faMailBulk}
+              style={{ marginRight: "10px", width: "35px" }}
             />
             <Heading alignSelf="center" size="2xl">
               Get in touch!
