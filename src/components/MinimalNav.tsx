@@ -28,7 +28,7 @@ const MinimalNav = () => {
       </NextLink>
       <FontAwesomeIcon
         onClick={toggleColorMode}
-        style={{ cursor: "pointer", width: "20px" }}
+        style={{ cursor: "pointer", width: "30px" }}
         icon={colorMode === "light" ? faMoon : faSun}
         size="2x"
       />

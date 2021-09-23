@@ -6,8 +6,28 @@ import Posts from "../../components/Posts";
 import DrifterStars from "@devil7softwares/react-drifter-stars";
 import APP_COLORS from "../../style/colorTheme";
 import MinimalNav from "../../components/MinimalNav";
+import { fetchData } from "../../lib/api";
+import readingTime from "reading-time";
 
-const BlogIndex = () => {
+export async function getStaticProps(context) {
+  const data = await fetchData("posts");
+  if (!data)
+    return {
+      props: {
+        error: "Unable to retrieve posts at this time, please try again later.",
+      },
+    };
+  const withReadingTime: PostWithReadingTime[] = data.map((post) => ({
+    ...post,
+    readTime: readingTime(post.content),
+  }));
+
+  return {
+    props: { posts: withReadingTime },
+  };
+}
+
+const BlogIndex = ({ posts, error }) => {
   const {
     colorMode,
   }: {
@@ -17,7 +37,7 @@ const BlogIndex = () => {
   React.useEffect(() => {
     // Set title
     document.title = "Rhys Morris - Blog";
-  });
+  }, []);
 
   // Canvas Style
   const bgStyle: Background = {
@@ -52,7 +72,7 @@ const BlogIndex = () => {
           }
           motion={{ ratio: 0.03 }}
         />
-        <Posts />
+        <Posts posts={posts} fetchError={error || null} />
       </section>
       <Footer />
     </Flex>

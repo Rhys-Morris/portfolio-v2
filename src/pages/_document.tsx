@@ -1,11 +1,14 @@
 import { ColorModeScript } from "@chakra-ui/color-mode";
 import NextDocument, { Html, Head, Main, NextScript } from "next/document";
 import theme from "../../theme";
+
 export default class Document extends NextDocument {
   render() {
     return (
       <Html lang="en">
         <Head>
+          <meta charSet="UTF-8" />
+          <meta content="ie=edge" httpEquiv="X-UA-Compatible" />
           <link
             rel="icon"
             type="image/png"
@@ -24,7 +27,6 @@ export default class Document extends NextDocument {
             href="/apple-touch-icon.png"
           />
           <link rel="manifest" href="/site.webmanifest" />
-          <meta name="theme-color" content="#ffffff" />
         </Head>
 
         <body>
