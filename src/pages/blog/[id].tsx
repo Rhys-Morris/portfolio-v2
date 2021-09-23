@@ -3,8 +3,6 @@ import { Flex, Text, Heading, Divider, Link, Box } from "@chakra-ui/layout";
 import { Image } from "@chakra-ui/image";
 import { useColorMode } from "@chakra-ui/color-mode";
 import { Button } from "@chakra-ui/button";
-import { Spinner } from "@chakra-ui/spinner";
-import { useRouter } from "next/router";
 import NextLink from "next/link";
 import readingTime from "reading-time";
 import DrifterStars from "@devil7softwares/react-drifter-stars";
@@ -18,18 +16,26 @@ import Markdown from "markdown-to-jsx";
 import { fetchData } from "../../lib/api";
 import { convertImageUrls } from "../../lib/helpers";
 
-const Article = () => {
-  const router = useRouter();
-  const { id } = router.query;
-  const [post, setPost] = React.useState(null);
-  const { colorMode } = useColorMode();
+export async function getStaticPaths() {
+  const data = await fetchData("posts");
+  const paths = data.map((post) => ({
+    params: { id: String(post.id) },
+  }));
+  return { paths, fallback: false }; // 404 other routes
+}
 
-  // Loading state
-  const [loading, setLoading] = React.useState(false);
-  const [error, setError]: [
-    error: null | string,
-    setError: React.Dispatch<React.SetStateAction<null | string>>
-  ] = React.useState(null);
+export async function getStaticProps({ params }) {
+  const data = await fetchData(`posts/${params.id}`);
+  const post = {
+    ...data,
+    content: convertImageUrls(data.content),
+    readTime: readingTime(data.content),
+  };
+  return { props: { post } };
+}
+
+const Article = ({ post }) => {
+  const { colorMode } = useColorMode();
 
   // Canvas Style
   const bgStyle: Background = {
@@ -44,33 +50,10 @@ const Article = () => {
     position: "absolute",
   };
 
-  // Get post
   React.useEffect(() => {
-    if (!id) return;
-
-    // Get posts
-    setLoading(true);
-    setError(null);
-    fetchData(`posts/${id}`)
-      .then((data) => {
-        setLoading(false);
-        if (!data)
-          throw new Error(
-            "Unable to retrieve posts at this time, please try again later."
-          );
-
-        // Set title
-        document.title = data.title;
-
-        const post = {
-          ...data,
-          content: convertImageUrls(data.content),
-          readTime: readingTime(data.content),
-        };
-        setPost(post);
-      })
-      .catch((e) => setError(e.message));
-  }, [id]);
+    // Set title
+    document.title = post.title;
+  });
 
   return (
     <Flex
@@ -102,82 +85,77 @@ const Article = () => {
         <Link as={NextLink} href="/blog">
           <Button>Back to Index</Button>
         </Link>
-        {loading && <Spinner mt="10px" size="xl" />}
-        {error && <Text mt="10px">{error}</Text>}
-        {!loading && !error && (
-          <>
-            <Heading as="h1" size="3xl" m="20px 0">
-              {post?.title}
-            </Heading>
-            <Flex align="center" wrap="wrap">
-              <Image
-                width="50px"
-                src="/photo.png"
-                borderRadius="50%"
-                alt="author"
-              />
-              <Text ml="10px" fontWeight="bold" fontFamily="iosevka">
-                Rhys Morris
-              </Text>
-              <Flex align="center" p="5px">
-                <Text ml="20px">
-                  {new Date(post?.published_at).toLocaleDateString("en-UK", {
-                    month: "long",
-                    day: "numeric",
-                    year: "numeric",
-                  })}
-                </Text>
-                <Divider
-                  orientation="vertical"
-                  bg={APP_COLORS.fontHighlight}
-                  borderRadius="50%"
-                  w="8px"
-                  h="8px"
-                  ml="10px"
-                />
-                <Text
-                  ml="10px"
-                  color={
-                    colorMode === "light"
-                      ? APP_COLORS.dimCanvasLight
-                      : APP_COLORS.dimCanvasDark
-                  }
-                >
-                  {post?.readTime?.text}
-                </Text>
-              </Flex>
-            </Flex>
-            <Box
-              w="100%"
-              mt="20px"
-              padding="20px "
-              bg={
+
+        <Heading as="h1" size="3xl" m="20px 0">
+          {post?.title}
+        </Heading>
+        <Flex align="center" wrap="wrap">
+          <Image
+            width="50px"
+            src="/photo.png"
+            borderRadius="50%"
+            alt="author"
+          />
+          <Text ml="10px" fontWeight="bold" fontFamily="iosevka">
+            Rhys Morris
+          </Text>
+          <Flex align="center" p="5px">
+            <Text ml="20px">
+              {new Date(post?.published_at).toLocaleDateString("en-UK", {
+                month: "long",
+                day: "numeric",
+                year: "numeric",
+              })}
+            </Text>
+            <Divider
+              orientation="vertical"
+              bg={APP_COLORS.fontHighlight}
+              borderRadius="50%"
+              w="8px"
+              h="8px"
+              ml="10px"
+            />
+            <Text
+              ml="10px"
+              color={
                 colorMode === "light"
-                  ? "rgb(236, 242, 247, .8)"
-                  : "rgb(23,29,34, .8)"
+                  ? APP_COLORS.dimCanvasLight
+                  : APP_COLORS.dimCanvasDark
               }
-              borderRadius="5px"
             >
-              {/* Empty string required to prevent dependency error */}
-              {/* eslint-disable-next-line */}
-              <Markdown children={post?.content || ""} />
-            </Box>
-            <Link
-              href="#content"
-              _hover={{ textDecoration: "none" }}
-              alignSelf="center"
-              mt="20px"
-            >
-              <Button>
-                <FontAwesomeIcon
-                  icon={faChevronUp}
-                  style={{ marginRight: "10px" }}
-                />
-                To Top
-              </Button>
-            </Link>
-          </>
-        )}
+              {post?.readTime?.text}
+            </Text>
+          </Flex>
+        </Flex>
+        <Box
+          w="100%"
+          mt="20px"
+          padding="20px "
+          bg={
+            colorMode === "light"
+              ? "rgb(236, 242, 247, .8)"
+              : "rgb(23,29,34, .8)"
+          }
+          borderRadius="5px"
+        >
+          {/* Empty string required to prevent dependency error */}
+          {/* eslint-disable-next-line */}
+          <Markdown children={post?.content || ""} />
+        </Box>
+        <Link
+          href="#content"
+          _hover={{ textDecoration: "none" }}
+          alignSelf="center"
+          mt="20px"
+        >
+          <Button>
+            <FontAwesomeIcon
+              icon={faChevronUp}
+              style={{ marginRight: "10px" }}
+            />
+            To Top
+          </Button>
+        </Link>
       </Flex>
       <Footer />
     </Flex>

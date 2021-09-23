@@ -22,7 +22,7 @@ const Posts = ({ posts, fetchError }) => {
     document.title = "Rhys Morris - Blog";
     // Add posts to filter state
     setFilteredPosts(posts);
-  }, [posts]);
+  }, []);
 
   // Filter posts
   const filterPosts = (searchString) => {

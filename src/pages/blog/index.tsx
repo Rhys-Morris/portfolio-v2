@@ -8,26 +8,40 @@ import APP_COLORS from "../../style/colorTheme";
 import MinimalNav from "../../components/MinimalNav";
 import { fetchData } from "../../lib/api";
 import readingTime from "reading-time";
+import { InferGetStaticPropsType } from "next";
 
-export async function getStaticProps(context) {
+type staticProps = {
+  props: {
+    posts?: undefined | PostWithReadingTime[];
+    error?: undefined | string;
+  };
+};
+
+export const getStaticProps = async (context) => {
   const data = await fetchData("posts");
-  if (!data)
-    return {
+  if (!data) {
+    const props: staticProps = {
       props: {
         error: "Unable to retrieve posts at this time, please try again later.",
       },
     };
+    return props;
+  }
   const withReadingTime: PostWithReadingTime[] = data.map((post) => ({
     ...post,
     readTime: readingTime(post.content),
   }));
 
-  return {
+  const props: staticProps = {
     props: { posts: withReadingTime },
   };
-}
+  return props;
+};
 
-const BlogIndex = ({ posts, error }) => {
+const BlogIndex = ({
+  posts,
+  error,
+}: InferGetStaticPropsType<typeof getStaticProps>) => {
   const {
     colorMode,
   }: {

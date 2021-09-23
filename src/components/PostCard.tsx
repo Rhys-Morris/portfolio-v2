@@ -64,7 +64,7 @@ export const PostCard1 = ({ post }) => {
               Read More{" "}
               <FontAwesomeIcon
                 icon={faArrowRight}
-                style={{ marginLeft: "10px" }}
+                style={{ marginLeft: "10px", width: "20px" }}
               />
             </Button>
             <Link as={NextLink} href={`/blog/${id}`}>
@@ -134,20 +134,22 @@ export const PostCard2 = ({ post }) => {
           {summary}
         </Text>
         <Link as={NextLink} href={`/blog/${id}`}>
-          <UnderlineText
-            color={
-              colorMode === "light"
-                ? APP_COLORS.secondaryLight
-                : APP_COLORS.secondaryDark
-            }
-            style={{ cursor: "pointer" }}
-          >
-            Read more
-            <FontAwesomeIcon
-              icon={faArrowRight}
-              style={{ marginLeft: "10px" }}
-            />
-          </UnderlineText>
+          <a>
+            <UnderlineText
+              color={
+                colorMode === "light"
+                  ? APP_COLORS.secondaryLight
+                  : APP_COLORS.secondaryDark
+              }
+              style={{ cursor: "pointer" }}
+            >
+              Read more
+              <FontAwesomeIcon
+                icon={faArrowRight}
+                style={{ marginLeft: "10px", width: "20px" }}
+              />
+            </UnderlineText>
+          </a>
         </Link>
       </Flex>
     </Flex>
