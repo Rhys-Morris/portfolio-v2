@@ -73,7 +73,7 @@ const BlogIndex = ({
           maxWidth: "1200px",
           width: "98%",
           margin: "0 auto",
-          marginTop: "100px",
+          marginTop: "40px",
         }}
       >
         <MinimalNav />
