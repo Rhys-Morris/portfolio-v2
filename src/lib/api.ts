@@ -12,7 +12,8 @@ export async function fetchData(path: string) {
 
 export function getStrapiMedia(media): string {
   const imageUrl: string = media.url.startsWith("/")
-    ? getStrapiUrl(media.url)
+    ? getStrapiUrl(media.url.slice(1))
     : media.url;
+  console.log(imageUrl);
   return imageUrl;
 }

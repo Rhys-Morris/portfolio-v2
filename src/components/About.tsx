@@ -23,6 +23,7 @@ const About = () => {
           <Image
             src="/photo.png"
             height="200px"
+            width="auto"
             zIndex="0"
             borderRadius="100%"
             alt="photo"
@@ -36,25 +37,29 @@ const About = () => {
             maxWidth={breakpoint1000 ? "500px" : null}
           >
             G&apos;day! I&apos;m Rhys, a software developer based in Melbourne,
-            Australia. I&apos;ve recently started my first position as a
-            developer after completing an intensive coding bootcamp through
-            Coder Academy. I discovered a passion for programming whilst
-            employed in my first career as a small animal veterinarian. I&apos;m
-            passionate about creating interactive, responsive and accessible
-            products. I aim to build applications and websites that provide a
-            great user experience, whilst still being performant. In my spare
-            time I restore mid century furniture - you can find my instagram
-            with some of my work{" "}
+            Australia. I&apos;ve recently attained my first role as a software
+            developer following graduation from Coder Academy&apos;s flex track
+            coding bootcamp. I discovered a passion for programming whilst
+            employed in my first career as a small animal veterinarian, and
+            decided that I wanted to pursue a role in the industry full time. I
+            love to problem solve, and really enjoy the challenges of software
+            development, as well as the creative outlet that comes with
+            designing and building applications for the web. In my spare time I
+            restore mid century furniture - you can find my instagram with some
+            of my work{" "}
             <Link
               href="https://www.instagram.com/morrismodern/?hl=en"
               target="_blank"
+              rel="noreferrer"
               _hover={{ textDecoration: "none" }}
             >
               <UnderlineText>here</UnderlineText>
             </Link>
-            . I love the design aesthetic of the mid century period, and
+            . I adore the design aesthetic of the mid century period, and
             there&apos;s something immeasurably satisfying about working with
-            wood, and bringing something old back to life.
+            wood, and bringing something old back to life. Particularly when
+            you&apos;ve spent the majority of the working week in front of a
+            screen!
           </Text>
         </div>
       </Flex>

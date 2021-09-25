@@ -2,6 +2,7 @@ import React from "react";
 import { Flex, Text, Heading, Divider, Link, Box } from "@chakra-ui/layout";
 import { Image } from "@chakra-ui/image";
 import { useColorMode } from "@chakra-ui/color-mode";
+import { useMediaQuery } from "@chakra-ui/media-query";
 import { Button } from "@chakra-ui/button";
 import NextLink from "next/link";
 import readingTime from "reading-time";
@@ -13,7 +14,7 @@ import Footer from "../../components/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronUp } from "@fortawesome/free-solid-svg-icons/faChevronUp";
 import Markdown from "markdown-to-jsx";
-import { fetchData } from "../../lib/api";
+import { fetchData, getStrapiMedia } from "../../lib/api";
 import { convertImageUrls } from "../../lib/helpers";
 
 export async function getStaticPaths() {
@@ -36,6 +37,7 @@ export async function getStaticProps({ params }) {
 
 const Article = ({ post }) => {
   const { colorMode } = useColorMode();
+  const [breakpoint600] = useMediaQuery("(max-width: 600px)");
 
   // Canvas Style
   const bgStyle: Background = {
@@ -47,7 +49,7 @@ const Article = ({ post }) => {
     inset: 0,
     width: "100%",
     zIndex: -1,
-    position: "absolute",
+    position: "fixed",
   };
 
   React.useEffect(() => {
@@ -77,7 +79,7 @@ const Article = ({ post }) => {
         direction="column"
         align="start"
         justify="center"
-        mt="150px"
+        mt="50px"
         maxWidth="1000px"
         width="90%"
         id="content"
@@ -127,6 +129,14 @@ const Article = ({ post }) => {
             </Text>
           </Flex>
         </Flex>
+        <Image
+          src={getStrapiMedia(post?.image)}
+          alt="header-image"
+          width="100%"
+          height="auto"
+          mt="20px"
+          borderRadius="10px"
+        />
         <Box
           w="100%"
           mt="20px"
@@ -137,10 +147,24 @@ const Article = ({ post }) => {
               : "rgb(23,29,34, .8)"
           }
           borderRadius="5px"
+          fontSize={breakpoint600 ? "100%" : "110%"}
+          id="markdown-wrapper"
         >
           {/* Empty string required to prevent dependency error */}
-          {/* eslint-disable-next-line */}
-          <Markdown children={post?.content || ""} />
+          <Markdown
+            /* eslint-disable-next-line */
+            children={post?.content || ""}
+            options={{
+              overrides: {
+                a: {
+                  component: Link,
+                  props: {
+                    className: "underline",
+                  },
+                },
+              },
+            }}
+          />
         </Box>
         <Link
           href="#content"

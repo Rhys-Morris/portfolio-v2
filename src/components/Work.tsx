@@ -81,7 +81,7 @@ const Work = () => {
         {/* Download resume */}
         <Text zIndex="1" mt="30px" mb="20px">
           Want to know more? Download my{" "}
-          <Link href="/resume.pdf" download>
+          <Link href="/resume.pdf" download _hover={{ textDecoration: "none" }}>
             <UnderlineText>resume</UnderlineText>
           </Link>
         </Text>

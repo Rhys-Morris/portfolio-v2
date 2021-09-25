@@ -1,5 +1,5 @@
 import React from "react";
-import { Flex, Link, Text } from "@chakra-ui/layout";
+import { Flex, Link } from "@chakra-ui/layout";
 import { useColorMode } from "@chakra-ui/color-mode";
 import { useMediaQuery } from "@chakra-ui/media-query";
 import APP_COLORS from "../style/colorTheme";

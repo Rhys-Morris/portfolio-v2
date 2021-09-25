@@ -8,3 +8,29 @@ html {
     font-size: 95%;
   }    
 }
+
+/* Correctly override appearance of links in markdown rendered for blog posts */
+.underline {
+  color: #85acd7 !important;  
+  font-weight: bold !important;
+  position: relative !important;
+}
+
+.underline:after {
+  content: "" !important; 
+  width: 0px !important;
+  transition: 0.3s all !important;
+  height: 2px !important;
+  background: #85acd7 !important;
+  position: absolute !important;
+  top: 100% !important;
+  left: 0 !important;
+}
+
+.underline:hover {
+  text-decoration: none !important;
+}
+
+.underline:hover:after {
+    width: 100% !important;
+}
