@@ -79,11 +79,11 @@ const Hamburger = () => {
           right="-190px"
           bg={
             colorMode === "light"
-              ? APP_COLORS.secondaryDark
+              ? APP_COLORS.fontHighlight
               : APP_COLORS.secondaryLight
           }
           transition=".5s all"
-          height="100%"
+          height="100vh"
           width="190px"
           p="15px"
           pl="30px"
