@@ -130,12 +130,14 @@ const Article = ({ post }) => {
           </Flex>
         </Flex>
         <Image
-          src={getStrapiMedia(post?.image)}
+          // Hack until I can fix content types
+          src={post?.summary.split("|")[0]}
           alt="header-image"
           width="100%"
           height="auto"
           mt="20px"
           borderRadius="10px"
+          lazy
         />
         <Box
           w="100%"

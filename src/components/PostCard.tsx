@@ -80,7 +80,7 @@ export const PostCard1 = ({ post }) => {
                 {title}
               </Text>
             </Link>
-            <Text mb="20px">{summary}</Text>
+            <Text mb="20px">{summary.split("|")[1]}</Text>
             <ReadMoreLink id={id} colorMode={colorMode} />
           </Flex>
         </Flex>
@@ -143,7 +143,7 @@ export const PostCard2 = ({ post }) => {
           </Flex>
         </Flex>
         <Text mb="10px" textAlign="justify">
-          {summary}
+          {summary.split("|")[1]}
         </Text>
         <ReadMoreLink id={id} colorMode={colorMode} />
       </Flex>
