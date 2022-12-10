@@ -6,6 +6,7 @@ import UnderlineText from "./styled/UnderlineText";
 
 const About = () => {
   const [breakpoint1000] = useMediaQuery("(max-width: 1000px)");
+
   return (
     <section style={{ display: "flex", marginBottom: "100px" }}>
       <Flex
@@ -34,7 +35,7 @@ const About = () => {
           <Text
             zIndex="0"
             textAlign="justify"
-            maxWidth={breakpoint1000 ? "500px" : null}
+            maxWidth={breakpoint1000 ? "500px" : "100%"}
           >
             G&apos;day! I&apos;m Rhys, a software developer based in Melbourne,
             Australia. I&apos;ve recently attained my first role as a software

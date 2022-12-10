@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons/faLinkedin";
 import { faGithubSquare } from "@fortawesome/free-brands-svg-icons/faGithubSquare";
 import { faTwitterSquare } from "@fortawesome/free-brands-svg-icons/faTwitterSquare";
-import { debounce } from "../lib/helpers";
+import { getBackgroundStyle } from "../lib/helpers/siteBackground";
 
 const sectionStyle = {
   width: "98vw",
@@ -17,44 +17,13 @@ const sectionStyle = {
 
 const Hero = () => {
   const { colorMode } = useColorMode();
-  const [dimCanvas, setDimCanvas] = React.useState(false);
-
-  const bgStyle: Background = {
-    background:
-      colorMode === "light"
-        ? `radial-gradient(ellipse at center, ${APP_COLORS.tertiaryLight} 0%, ${APP_COLORS.primaryLight} 80%)`
-        : `radial-gradient(ellipse at center, ${APP_COLORS.tertiaryDark} 0%, ${APP_COLORS.primaryDark} 80%)`,
-    display: "block",
-    inset: 0,
-    width: "100%",
-    zIndex: 0,
-    position: "fixed",
-  };
-
-  const onScroll = () => {
-    if (window.scrollY > window.innerHeight / 2) {
-      setDimCanvas(true);
-    }
-    if (window.scrollY <= window.innerHeight / 2) {
-      setDimCanvas(false);
-    }
-  };
-
-  React.useEffect(() => {
-    window.addEventListener("scroll", debounce(onScroll));
-    return () => window.removeEventListener("scroll", onscroll);
-  }, []);
 
   return (
     <section style={sectionStyle}>
       <DrifterStars
-        style={bgStyle}
+        style={getBackgroundStyle(colorMode)}
         color={
-          colorMode === "light" && !dimCanvas
-            ? APP_COLORS.secondaryLight
-            : colorMode === "dark" && !dimCanvas
-            ? APP_COLORS.secondaryDark
-            : colorMode === "light" && dimCanvas
+          colorMode === "light"
             ? APP_COLORS.dimCanvasLight
             : APP_COLORS.dimCanvasDark
         }

@@ -1,19 +1,12 @@
-const projectData: {
-  title: string;
-  description: string;
-  imageUrl: string;
-  resourceUrls: [string, string | false];
-  technologies: string[];
-}[] = [
+import { Project } from "../types/project";
+
+const projectData: Project[] = [
   {
     title: "PcPartsPal",
     description:
       "A marketplace application where users can buy and sell second hand computer parts.",
     imageUrl: "/pcpartspal.png",
-    resourceUrls: [
-      "https://github.com/Rhys-Morris/pcpartspal",
-      "http://pcpartspal.herokuapp.com",
-    ],
+    resourceUrls: ["https://github.com/Rhys-Morris/pcpartspal"],
     technologies: [
       "Ruby on Rails",
       "JavaScript",
@@ -58,7 +51,7 @@ const projectData: {
     description:
       "Command line application to play the popular board game draughts between two players. File based leaderboard storage.",
     imageUrl: "/draughts.png",
-    resourceUrls: ["https://github.com/Rhys-Morris/terminal-draughts", false],
+    resourceUrls: ["https://github.com/Rhys-Morris/terminal-draughts"],
     technologies: ["Ruby"],
   },
   {
@@ -86,7 +79,7 @@ const projectData: {
     description:
       "The site you're on currently, my little corner of the internet.",
     imageUrl: "/portfolio.png",
-    resourceUrls: ["https://github.com/Rhys-Morris/portfolio-v2", false],
+    resourceUrls: ["https://github.com/Rhys-Morris/portfolio-v2"],
     technologies: ["NextJS", "React", "TypeScript", "Strapi", "ChakraUI"],
   },
   {

@@ -1,15 +1,19 @@
 import React from "react";
 import { Flex, Heading, Box, Text, Badge } from "@chakra-ui/layout";
-import { Button } from "@chakra-ui/button";
 import { useColorMode } from "@chakra-ui/color-mode";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub";
 import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons/faExternalLinkAlt";
 import { motion } from "framer-motion";
+import { Project } from "../types/project";
 
 const MotionFlex = motion(Flex);
 
-const ProjectCard = ({ project }) => {
+interface Props {
+  project: Project;
+}
+
+const ProjectCard = ({ project }: Props) => {
   const { colorMode } = useColorMode();
   const { title, description, imageUrl, technologies, resourceUrls } = project;
   const [githubLink, liveLink] = resourceUrls;

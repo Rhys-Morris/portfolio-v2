@@ -1,28 +1,25 @@
 import React from "react";
 import { Flex, Heading } from "@chakra-ui/layout";
-import { fetchData } from "../lib/api";
 import { PostCard2 } from "./PostCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen } from "@fortawesome/free-solid-svg-icons/faPen";
-import readingTime from "reading-time";
+import useRequestState from "../hooks/useRequestState";
+import { fetchPostsWithReadingTime } from "../lib/api";
+import { PostWithReadingTime } from "../types/post";
+import { RequestState } from "../types/requestState";
+
+const PostList = ({ posts }: { posts: PostWithReadingTime[] }) => (
+  <Flex wrap="wrap" w="100%" align="start" justify="space-around">
+    {posts.map((post, i) => (
+      <PostCard2 key={i} post={post} />
+    ))}
+  </Flex>
+);
 
 const Blog = () => {
-  // Post state
-  const [posts, setPosts]: [
-    PostWithReadingTime[] | null,
-    (posts: PostWithReadingTime[]) => void
-  ] = React.useState(null);
-
-  React.useEffect(() => {
-    // Get posts
-    fetchData("posts?_limit=2").then((data) => {
-      const posts = data.map((post) => ({
-        ...post,
-        readTime: readingTime(post.content),
-      }));
-      setPosts(posts);
-    });
-  }, []);
+  const [requestState, posts] = useRequestState<PostWithReadingTime[]>(
+    fetchPostsWithReadingTime
+  );
 
   return (
     <Flex
@@ -45,11 +42,9 @@ const Blog = () => {
           Latest Blog Posts
         </Heading>
       </Flex>
-      <Flex wrap="wrap" w="100%" align="start" justify="space-around">
-        {posts?.map((post, i) => (
-          <PostCard2 key={i} post={post} />
-        ))}
-      </Flex>
+      {requestState === RequestState.SUCCESS && posts && (
+        <PostList posts={posts} />
+      )}
     </Flex>
   );
 };

@@ -5,10 +5,11 @@ import NextLink from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon } from "@fortawesome/free-solid-svg-icons/faMoon";
 import { faSun } from "@fortawesome/free-solid-svg-icons/faSun";
-import Logo from "./Logo";
+import Logo from "../Logo";
 
 const MinimalNav = () => {
   const { colorMode, toggleColorMode } = useColorMode();
+
   return (
     <Flex
       p="0 3.5vw"

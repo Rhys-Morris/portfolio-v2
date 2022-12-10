@@ -8,54 +8,60 @@ import NextLink from "next/link";
 import readingTime from "reading-time";
 import DrifterStars from "@devil7softwares/react-drifter-stars";
 import APP_COLORS from "../../style/colorTheme";
-import MinimalNav from "../../components/MinimalNav";
 import "@fontsource/iosevka";
 import Footer from "../../components/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronUp } from "@fortawesome/free-solid-svg-icons/faChevronUp";
 import Markdown from "markdown-to-jsx";
-import { fetchData, getStrapiMedia } from "../../lib/api";
-import { convertImageUrls } from "../../lib/helpers";
+import { convertImageUrls } from "../../lib/helpers/blog";
+import { PostWithReadingTime } from "../../types/post";
+import { useDocumentTitle } from "../../hooks/useDocumentTitle";
+import MinimalNav from "../../components/navigation/MinimalNav";
+import { getBackgroundStyle } from "../../lib/helpers/siteBackground";
+import { fetchPost, fetchPosts } from "../../lib/api";
+
+interface Props {
+  post?: PostWithReadingTime;
+}
+
+interface StaticPostParams {
+  params: {
+    id: string;
+  };
+}
 
 export async function getStaticPaths() {
-  const data = await fetchData("posts");
+  const data = await fetchPosts();
+
   const paths = data.map((post) => ({
     params: { id: String(post.id) },
   }));
+
   return { paths, fallback: false }; // 404 other routes
 }
 
-export async function getStaticProps({ params }) {
-  const data = await fetchData(`posts/${params.id}`);
+export async function getStaticProps({ params }: StaticPostParams) {
+  const data = await fetchPost(params.id);
+
   const post = {
     ...data,
     content: convertImageUrls(data.content),
     readTime: readingTime(data.content),
   };
+
   return { props: { post } };
 }
 
-const Article = ({ post }) => {
+const Article = ({ post }: Props) => {
   const { colorMode } = useColorMode();
   const [breakpoint600] = useMediaQuery("(max-width: 600px)");
 
-  // Canvas Style
-  const bgStyle: Background = {
-    background:
-      colorMode === "light"
-        ? `radial-gradient(ellipse at center, ${APP_COLORS.tertiaryLight} 0%, ${APP_COLORS.primaryLight} 80%)`
-        : `radial-gradient(ellipse at center, ${APP_COLORS.tertiaryDark} 0%, ${APP_COLORS.primaryDark} 80%)`,
-    display: "block",
-    inset: 0,
-    width: "100%",
-    zIndex: -1,
-    position: "fixed",
-  };
+  useDocumentTitle(post?.title ?? "");
 
-  React.useEffect(() => {
-    // Set title
-    document.title = post.title;
-  });
+  const color =
+    colorMode === "light"
+      ? APP_COLORS.dimCanvasLight
+      : APP_COLORS.dimCanvasDark;
 
   return (
     <Flex
@@ -66,12 +72,8 @@ const Article = ({ post }) => {
     >
       <MinimalNav />
       <DrifterStars
-        style={bgStyle}
-        color={
-          colorMode === "light"
-            ? APP_COLORS.dimCanvasLight
-            : APP_COLORS.dimCanvasDark
-        }
+        style={{ ...getBackgroundStyle(colorMode), zIndex: -1 }}
+        color={color}
         motion={{ ratio: 0.03 }}
       />
       <Flex
@@ -103,11 +105,12 @@ const Article = ({ post }) => {
           </Text>
           <Flex align="center" p="5px">
             <Text ml="20px">
-              {new Date(post?.published_at).toLocaleDateString("en-UK", {
-                month: "long",
-                day: "numeric",
-                year: "numeric",
-              })}
+              {post &&
+                new Date(post.published_at).toLocaleDateString("en-UK", {
+                  month: "long",
+                  day: "numeric",
+                  year: "numeric",
+                })}
             </Text>
             <Divider
               orientation="vertical"
@@ -117,14 +120,7 @@ const Article = ({ post }) => {
               h="8px"
               ml="10px"
             />
-            <Text
-              ml="10px"
-              color={
-                colorMode === "light"
-                  ? APP_COLORS.dimCanvasLight
-                  : APP_COLORS.dimCanvasDark
-              }
-            >
+            <Text ml="10px" color={color}>
               {post?.readTime?.text}
             </Text>
           </Flex>

@@ -5,66 +5,33 @@ import Footer from "../../components/Footer";
 import Posts from "../../components/Posts";
 import DrifterStars from "@devil7softwares/react-drifter-stars";
 import APP_COLORS from "../../style/colorTheme";
-import MinimalNav from "../../components/MinimalNav";
-import { fetchData } from "../../lib/api";
-import readingTime from "reading-time";
+import { fetchPostsWithReadingTime } from "../../lib/api";
 import { InferGetStaticPropsType } from "next";
+import { useDocumentTitle } from "../../hooks/useDocumentTitle";
+import { getBackgroundStyle } from "../../lib/helpers/siteBackground";
+import MinimalNav from "../../components/navigation/MinimalNav";
 
-type staticProps = {
-  props: {
-    posts?: undefined | PostWithReadingTime[];
-    error?: undefined | string;
-  };
-};
+export const getStaticProps = async () => {
+  const posts = await fetchPostsWithReadingTime();
 
-export const getStaticProps = async (context) => {
-  const data = await fetchData("posts");
-  if (!data) {
-    const props: staticProps = {
+  if (!posts) {
+    return {
       props: {
         error: "Unable to retrieve posts at this time, please try again later.",
       },
     };
-    return props;
   }
-  const withReadingTime: PostWithReadingTime[] = data.map((post) => ({
-    ...post,
-    readTime: readingTime(post.content),
-  }));
 
-  const props: staticProps = {
-    props: { posts: withReadingTime },
-  };
-  return props;
+  return { props: { posts } };
 };
 
 const BlogIndex = ({
   posts,
   error,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  const {
-    colorMode,
-  }: {
-    colorMode: colorMode;
-  } = useColorMode();
+  const { colorMode } = useColorMode();
 
-  React.useEffect(() => {
-    // Set title
-    document.title = "Rhys Morris - Blog";
-  }, []);
-
-  // Canvas Style
-  const bgStyle: Background = {
-    background:
-      colorMode === "light"
-        ? `radial-gradient(ellipse at center, ${APP_COLORS.tertiaryLight} 0%, ${APP_COLORS.primaryLight} 80%)`
-        : `radial-gradient(ellipse at center, ${APP_COLORS.tertiaryDark} 0%, ${APP_COLORS.primaryDark} 80%)`,
-    display: "block",
-    inset: 0,
-    width: "100%",
-    zIndex: -1,
-    position: "fixed",
-  };
+  useDocumentTitle("Rhys Morris - Blog");
 
   return (
     <Flex direction="column" justify="space-between" minHeight="100vh">
@@ -78,7 +45,7 @@ const BlogIndex = ({
       >
         <MinimalNav />
         <DrifterStars
-          style={bgStyle}
+          style={{ ...getBackgroundStyle(colorMode), zIndex: -1 }}
           color={
             colorMode === "light"
               ? APP_COLORS.dimCanvasLight
@@ -86,7 +53,7 @@ const BlogIndex = ({
           }
           motion={{ ratio: 0.03 }}
         />
-        <Posts posts={posts} fetchError={error || null} />
+        <Posts posts={posts} error={error} />
       </section>
       <Footer />
     </Flex>

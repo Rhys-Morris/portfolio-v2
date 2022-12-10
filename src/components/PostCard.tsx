@@ -1,15 +1,21 @@
 import React from "react";
-import { Flex, Text, Link, Box } from "@chakra-ui/layout";
+import { Flex, Text, Link } from "@chakra-ui/layout";
 import { useColorMode } from "@chakra-ui/color-mode";
-import { Button } from "@chakra-ui/button";
 import APP_COLORS from "../style/colorTheme";
 import "@fontsource/iosevka";
 import NextLink from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons/faArrowRight";
 import UnderlineText from "./styled/UnderlineText";
+import { PostWithReadingTime } from "../types/post";
+import { ColorMode } from "@chakra-ui/react";
 
-const ReadMoreLink = ({ id, colorMode }) => (
+interface ReadMoreLinkProps {
+  id: number;
+  colorMode: ColorMode;
+}
+
+const ReadMoreLink = ({ id, colorMode }: ReadMoreLinkProps) => (
   <Link as={NextLink} href={`/blog/${id}`}>
     <a>
       <UnderlineText
@@ -30,15 +36,13 @@ const ReadMoreLink = ({ id, colorMode }) => (
   </Link>
 );
 
-export const PostCard1 = ({ post }) => {
+interface PostCardProps {
+  post: PostWithReadingTime;
+}
+
+export const PostCard1 = ({ post }: PostCardProps) => {
   const { colorMode }: { colorMode: colorMode } = useColorMode();
-  const {
-    id,
-    published_at: published,
-    title,
-    summary,
-    readTime,
-  }: PostWithReadingTime = post;
+  const { id, published_at: published, title, summary, readTime } = post;
 
   return (
     <Flex m="10px 0" align="center" maxWidth="800px" w="100%" zIndex="1">
@@ -89,15 +93,9 @@ export const PostCard1 = ({ post }) => {
   );
 };
 
-export const PostCard2 = ({ post }) => {
+export const PostCard2 = ({ post }: PostCardProps) => {
   const { colorMode }: { colorMode: colorMode } = useColorMode();
-  const {
-    id,
-    published_at: published,
-    title,
-    summary,
-    readTime,
-  }: PostWithReadingTime = post;
+  const { id, published_at: published, title, summary, readTime } = post;
 
   return (
     <Flex

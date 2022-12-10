@@ -15,20 +15,41 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTwitter } from "@fortawesome/free-brands-svg-icons/faTwitter";
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons/faLinkedin";
 import { faMailBulk } from "@fortawesome/free-solid-svg-icons/faMailBulk";
-import { validateForm } from "../lib/helpers";
+import { validateForm } from "../lib/validation";
 import { useForm } from "@formspree/react";
 import APP_COLORS from "../style/colorTheme";
+
+type FormError = {
+  message?: string;
+};
 
 const Contact = () => {
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [message, setMessage] = React.useState("");
   const [state, handleSubmit] = useForm("xwkwborr");
-  const [emailError, setEmailError] = React.useState(null);
-  const [nameError, setNameError] = React.useState(null);
+  const [emailError, setEmailError] = React.useState("");
+  const [nameError, setNameError] = React.useState("");
   const { isOpen, onOpen, onClose } = useDisclosure();
-
   const { colorMode } = useColorMode();
+
+  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    try {
+      e.preventDefault();
+      validateForm(name, email);
+      handleSubmit(e);
+      onOpen();
+    } catch (e: unknown) {
+      const { message: errorMessage } = e as FormError;
+      if (errorMessage === "Email is an invalid format") {
+        setEmailError(errorMessage);
+      }
+      if (errorMessage === "Name must not be empty") {
+        setNameError(errorMessage);
+      }
+    }
+  };
+
   return (
     <section
       id="contact"
@@ -55,6 +76,7 @@ const Contact = () => {
             </ModalBody>
           </ModalContent>
         </Modal>
+
         <Flex direction="column" maxWidth="750px" width="80vw" zIndex="2">
           <Flex align="center" justify="center" mb="20px">
             <FontAwesomeIcon
@@ -70,22 +92,7 @@ const Contact = () => {
             I&apos;m always open to work opportunities! Reach out and we can
             have a chat.
           </Text>
-          <form
-            method="POST"
-            onSubmit={(e) => {
-              try {
-                e.preventDefault();
-                validateForm(name, email);
-                handleSubmit(e);
-                onOpen();
-              } catch (e) {
-                if (e.message === "Email is an invalid format")
-                  setEmailError(e.message);
-                if (e.message === "Name must not be empty")
-                  setNameError(e.message);
-              }
-            }}
-          >
+          <form method="POST" onSubmit={handleFormSubmit}>
             <FormControl mb="30px">
               <FormLabel size="sm">Name</FormLabel>
               <Input
@@ -96,7 +103,7 @@ const Contact = () => {
                 name="name"
                 onChange={(e) => {
                   setName(e.target.value);
-                  setNameError(null);
+                  setNameError("");
                 }}
               />
               {nameError && (
@@ -116,7 +123,7 @@ const Contact = () => {
                 value={email}
                 onChange={(e) => {
                   setEmail(e.target.value);
-                  setEmailError(null);
+                  setEmailError("");
                 }}
                 mb="10px"
               />
@@ -143,7 +150,7 @@ const Contact = () => {
             <Button
               width="100%"
               colorScheme={colorMode === "light" ? "gray" : "blue"}
-              bg={colorMode === "dark" ? APP_COLORS.fontHighlight : null}
+              bg={colorMode === "dark" ? APP_COLORS.fontHighlight : ""}
               type="submit"
               disabled={state.submitting}
             >

@@ -4,34 +4,31 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons/faSearch";
 import { PostCard1 } from "./PostCard";
+import { PostWithReadingTime } from "../types/post";
+import { useDocumentTitle } from "../hooks/useDocumentTitle";
 
-const Posts = ({ posts, fetchError }) => {
-  // Post state
-  const [filteredPosts, setFilteredPosts]: [
-    PostWithReadingTime[],
-    (posts: PostWithReadingTime[]) => void
-  ] = React.useState([]);
+interface Props {
+  posts?: PostWithReadingTime[];
+  error?: string;
+}
 
-  const [error, setError]: [
-    error: null | string,
-    setError: React.Dispatch<React.SetStateAction<null | string>>
-  ] = React.useState(fetchError);
+const Posts = ({ posts, error }: Props) => {
+  const [filteredPosts, setFilteredPosts] = React.useState<
+    PostWithReadingTime[]
+  >(posts ?? []);
 
-  React.useEffect(() => {
-    // Set title
-    document.title = "Rhys Morris - Blog";
-    // Add posts to filter state
-    setFilteredPosts(posts);
-  }, []);
+  useDocumentTitle("Rhys Morris - Blog");
 
-  // Filter posts
-  const filterPosts = (searchString) => {
+  const filterPosts = (searchString: string) => {
     if (!searchString) {
-      setFilteredPosts(posts);
+      setFilteredPosts(posts ?? []);
       return;
     }
+
     const testRegExp = new RegExp(searchString, "i");
-    const filtered = posts.filter((post) => post.title.match(testRegExp));
+    const filtered = (posts ?? []).filter((post) =>
+      post.title.match(testRegExp)
+    );
     setFilteredPosts(filtered);
   };
 
@@ -50,17 +47,19 @@ const Posts = ({ posts, fetchError }) => {
           maxWidth="500px"
           width="100%"
           borderWidth="2px"
-          onChange={(event) => filterPosts(event.target.value)}
+          onChange={({ target: { value } }) => filterPosts(value)}
         />
       </InputGroup>
+
       {error && <Text mt="10px">{error}</Text>}
+
       {!error && (
         <Flex w="100%" direction="column">
-          {filteredPosts?.length > 0 &&
+          {filteredPosts?.length > 0 ? (
             filteredPosts?.map((post) => (
               <PostCard1 key={post.id} post={post} />
-            ))}
-          {filteredPosts?.length === 0 && (
+            ))
+          ) : (
             <Text mt="20px">No blog posts to display</Text>
           )}
         </Flex>

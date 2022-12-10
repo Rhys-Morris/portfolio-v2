@@ -6,10 +6,9 @@ import { faBriefcase } from "@fortawesome/free-solid-svg-icons/faBriefcase";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons/faChevronDown";
 import { faChevronUp } from "@fortawesome/free-solid-svg-icons/faChevronUp";
 import ProjectCard from "./ProjectCard";
-import Technology from "./Technology";
+import Technology from "./technology/Technology";
 import { projectData } from "../lib/projectData";
 import UnderlineText from "./styled/UnderlineText";
-import NextLink from "next/link";
 
 const Work = () => {
   const [projectCount, setProjectCount] = React.useState(4);
@@ -78,6 +77,7 @@ const Work = () => {
             </Button>
           )}
         </Flex>
+
         {/* Download resume */}
         <Text zIndex="1" mt="30px" mb="20px">
           Want to know more? Download my{" "}
